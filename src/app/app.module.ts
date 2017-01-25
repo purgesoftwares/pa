@@ -21,7 +21,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 		LoginModule,
 		SignupModule,
 		DashboardModule,
-		SharedModule.forRoot()
+		SharedModule.forRoot(),
+		MaterialModule.forRoot(),
   ],
   declarations: [AppComponent],
   entryComponents: [AppComponent],
