@@ -1,4 +1,4 @@
-import {Component, Optional} from '@angular/core';
+import {Component, ViewContainerRef, Optional} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
 
 
@@ -7,7 +7,7 @@ import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
 })
-export class Material2AppAppComponent {
+export class AppComponent {
   isDarkTheme: boolean = false;
   lastDialogResult: string;
 
@@ -26,32 +26,8 @@ export class Material2AppAppComponent {
     }, 200);
   }
 
-  openDialog() {
-    let dialogRef = this._dialog.open(DialogContent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.lastDialogResult = result;
-    })
-  }
-
   showSnackbar() {
     this._snackbar.open('YUM SNACKS', 'CHEW');
   }
 }
 
-
-@Component({
-  template: `
-    <p>This is a dialog</p>
-    <p>
-      <label>
-        This is a text box inside of a dialog.
-        <input #dialogInput>
-      </label>
-    </p>
-    <p> <button md-button (click)="dialogRef.close(dialogInput.value)">CLOSE</button> </p>
-  `,
-})
-export class DialogContent {
-  constructor(@Optional() public dialogRef: MdDialogRef<DialogContent>) { }
-}

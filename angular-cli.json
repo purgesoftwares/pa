@@ -7,7 +7,9 @@
     {
       "root": "src",
       "outDir": "dist",
-      "assets": "assets",
+      "assets": [
+        "assets"
+      ],
       "index": "index.html",
       "main": "main.ts",
       "test": "test.ts",
@@ -16,9 +18,10 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "material2-app-theme.scss"
+        "assets/css/bootstrap.css"
       ],
-      "scripts": [],
+      "scripts": [
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "prod": "environments/environment.prod.ts",
@@ -26,8 +29,10 @@
       }
     }
   ],
-  "addons": [],
-  "packages": [],
+  "addons": [
+  ],
+  "packages": [
+  ],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
@@ -39,8 +44,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "prefixInterfaces": false,
-    "lazyRoutePrefix": "+"
+    "styleExt": "scss",
+    "prefixInterfaces": false
   }
 }

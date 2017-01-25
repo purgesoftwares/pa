@@ -1,0 +1,26 @@
+[       
+    {
+        "page": "/index.html",
+        "visit": "3210",
+        "new_visit" : "15.90",
+        "revenue": "$15.00"
+    }, 
+    {
+        "page": "/signup.html",
+        "visit": "3210",
+        "new_visit" : "12.90",
+        "revenue": "$153.00"
+    }, 
+    {
+        "page": "/login.html",
+        "visit": "3210",
+        "new_visit" : "15.90",
+        "revenue": "$169.00"
+    }, 
+    {
+        "page": "/user.html",
+        "visit": "3210",
+        "new_visit" : "19.60",
+        "revenue": "$175.00"
+    }
+]

@@ -1,5 +1,8 @@
-@import '~@angular/material/core/theming/all-theme';
+@import './../node_modules/@angular/material/core/theming/all-theme';
+//@import './../node_modules/main';
 
+
+ 
 // NOTE: Theming is currently experimental and not yet publically released!
 
 @include md-core();
