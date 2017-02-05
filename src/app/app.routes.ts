@@ -8,9 +8,8 @@ import { LoginComponent } from './login/index';
 
 export const routes: Routes = [
 	
-	{ path: '**', component: LoginComponent },
 	{
-    	path: '',
+    	path: '',	
     	component: LoginComponent
   	}
 ];
