@@ -17,8 +17,9 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css",
-        "assets/css/bootstrap.css"
+        "assets/bootstrap3/css/bootstrap.css",
+        "narrow_jumbotron.css",
+        "styles.css"
       ],
       "scripts": [
       ],
