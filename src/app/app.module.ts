@@ -13,6 +13,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { PageModule } from './page/page.module';
 
+import {FrontTopNavComponent} from './shared/index';
+import {FooterComponent} from './shared/index';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -24,11 +26,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 		LoginModule,
 		PageModule,
 		SignupModule,
-		DashboardModule,
 		SharedModule.forRoot(),
 		MaterialModule.forRoot(),
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, FrontTopNavComponent, FooterComponent],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent],
 })
