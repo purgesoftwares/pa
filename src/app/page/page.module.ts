@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { PageComponent } from './page.component';
 
 import {FrontTopNavComponent} from '../shared/index';
+import {FooterComponent} from '../shared/index';
 
 @NgModule({
     imports: [CommonModule, RouterModule],
-    declarations: [PageComponent, FrontTopNavComponent],
-    exports: [PageComponent, FrontTopNavComponent]
+    declarations: [PageComponent, FrontTopNavComponent, FooterComponent],
+    exports: [PageComponent, FrontTopNavComponent, FooterComponent]
 })
 
 export class PageModule { }

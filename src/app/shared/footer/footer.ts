@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'top-nav',
-    templateUrl: 'topnav.html',
+    selector: 'footer-nav',
+    templateUrl: 'footer.html',
 })
 
-export class TopNavComponent {
+export class FooterComponent {
 	changeTheme(color: string): void {
 		var link: any = '<link></link>';
 		//var link: any = $('<link>');
