@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule, Routes  } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { routes } from './app.routes';
 
 import { LoginModule } from './login/login.module';
@@ -24,6 +25,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 		HttpModule,
 		RouterModule.forRoot(routes),
 		LoginModule,
+		FormsModule,
+		DashboardModule,
 		PageModule,
 		SignupModule,
 		SharedModule.forRoot(),

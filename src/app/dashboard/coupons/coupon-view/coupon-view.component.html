@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Coupon View
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-tag"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/coupon" > Coupons</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-eye "></i> Coupon View
+                </li>
+            </ol>
+        </div>
+    <a [routerLink]="['/dashboard/coupon']" class="pull-right btn btn-primary">Back</a>
+    </div>
+
+    <div class="table-responsive">
+              <table style="border: 0px" class="table table-hover table-striped">
+                 <tbody>
+                    <tr>
+                        <td>Coupon Code :</td>
+                        <td>{{ model.couponCode }}</td>
+                    </tr> 
+                    <tr>
+                        <td>Coupon Number :</td>
+                        <td>{{ model.couponNumber }}</td>
+                    </tr>
+                    <tr>
+                        <td>Price :</td>
+                        <td>{{ model.price }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Provider :</td>
+                        <td>{{ model.provider }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Used :</td>
+                        <td>{{ model.used }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Availability :</td>
+                        <td>{{ model.availability }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Start Date :</td>
+                        <td>{{ model.startTime }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Expiry Date :</td>
+                        <td>{{ model.endTime }}</td>
+                    </tr>
+                    
+
+                </tbody> 
+             </table>
+    </div>
+</div>

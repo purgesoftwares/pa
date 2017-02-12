@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'top-nav',
+    selector: 'front-nav',
     templateUrl: 'fronttopnav.html',
 })
 

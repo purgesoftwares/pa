@@ -8,6 +8,8 @@ import { DashboardRoutes } from './dashboard/index';
 import { PageComponent } from './page/index';
 import { LoginComponent } from './login/index';
 import { SignupComponent } from './signup/index';
+import { DashboardComponent } from './dashboard/index';
+
 
 export const routes: Routes = [
 	
@@ -22,5 +24,9 @@ export const routes: Routes = [
 	{
     	path: '',	
     	component: PageComponent
-  	}
+  	},
+    {
+      path: 'dashboard', 
+      component: DashboardComponent
+    }
 ];

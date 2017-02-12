@@ -4,7 +4,7 @@ import { HomeRoutes } from './home/index';
 
 import { UserRoutes } from './users/index';
 import { BlankPageRoutes } from './blank-page/index';
-import { FormRoutes } from './forms/index';
+import { CouponRoutes } from './coupons/index';
 
 import { DashboardComponent } from './index';
 
@@ -14,10 +14,8 @@ export const DashboardRoutes: Route[] = [
     	component: DashboardComponent,
     	children: [
 	    	...HomeRoutes,
-	    	
-            ...UserRoutes,
-	    	
-        ...FormRoutes,
+	    	...CouponRoutes,
+        ...UserRoutes
     	]
   	}
 ];

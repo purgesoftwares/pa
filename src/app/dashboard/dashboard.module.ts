@@ -6,7 +6,7 @@ import { HomeModule } from './home/home.module';
 import { UserModule } from './users/user.module';
 
 
-import { FormModule } from './forms/forms.module';
+import { CouponModule } from './coupons/coupon.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -20,7 +20,7 @@ import {SidebarComponent} from '../shared/index';
     	RouterModule,
     	HomeModule,
         UserModule,
-        FormModule,
+        CouponModule,
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]
