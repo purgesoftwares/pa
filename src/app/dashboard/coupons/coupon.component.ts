@@ -1,19 +1,15 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
 
 @Component({
 	moduleId: module.id,
 	selector: 'coupon-cmp',
-	templateUrl: 'coupon.component.html',
-
-	providers: [PagerService]
-
+	templateUrl: 'coupon.component.html'
 })
 
 export class CouponComponent {
-	coupons: Array<Object>[];
+	/*coupons: Array<Object>[];
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
@@ -48,13 +44,13 @@ export class CouponComponent {
 		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:startTime, endTime:endTime}})
 	}
 
-	/*search(terms: string) {
+	search(terms: string) {
 		if(terms) {
 			this.pagedItems = this.coupons.filter((item) => item.couponCode.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}
-	}*/
+	}
    
     setPage(page: number) {
         if (page < 1 || page > this.pager.totalPages) {
@@ -62,5 +58,5 @@ export class CouponComponent {
         }
         this.pager = this.pagerService.getPager(this.coupons.length, page);
         this.pagedItems = this.coupons.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }   
+    }*/   
 }
