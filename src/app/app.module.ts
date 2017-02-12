@@ -13,6 +13,7 @@ import { SignupModule } from './signup/signup.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { PageModule } from './page/page.module';
+import { CouponViewModule } from './dashboard/coupons/coupon-view/coupon-view.module';
 
 import {FrontTopNavComponent} from './shared/index';
 import {FooterComponent} from './shared/index';
@@ -28,6 +29,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 		FormsModule,
 		DashboardModule,
 		PageModule,
+		CouponViewModule,
 		SignupModule,
 		SharedModule.forRoot(),
 		MaterialModule.forRoot(),

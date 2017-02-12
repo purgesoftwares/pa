@@ -10,6 +10,7 @@ import { LoginComponent } from './login/index';
 import { SignupComponent } from './signup/index';
 import { DashboardComponent } from './dashboard/index';
 import { CouponComponent } from './dashboard/coupons/index';
+import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
 
 export const routes: Routes = [
 	
@@ -31,8 +32,13 @@ export const routes: Routes = [
       children: [
 	    	{
       			path: 'coupon', 
-      			component: CouponComponent
-    		}
+      			component: CouponComponent,
+               
+    		},
+            {
+                path: 'coupon-view', 
+                component: CouponViewComponent,
+            }
     	]
     }
 ];
