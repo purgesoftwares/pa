@@ -9,7 +9,7 @@ import { PageComponent } from './page/index';
 import { LoginComponent } from './login/index';
 import { SignupComponent } from './signup/index';
 import { DashboardComponent } from './dashboard/index';
-
+import { CouponComponent } from './dashboard/coupons/index';
 
 export const routes: Routes = [
 	
@@ -27,6 +27,12 @@ export const routes: Routes = [
   	},
     {
       path: 'dashboard', 
-      component: DashboardComponent
+      component: DashboardComponent,
+      children: [
+	    	{
+      			path: 'coupon', 
+      			component: CouponComponent
+    		}
+    	]
     }
 ];
