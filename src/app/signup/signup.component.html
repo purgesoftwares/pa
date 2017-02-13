@@ -1,32 +1,38 @@
-
-      <div class="jumbotron">
-        <h1>Signup</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-      </div>
-
+<div class="signup-page">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+			<h1>Customer Signup</h1>
+			<form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+		        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+		            <label for="email">Email</label>
+		            <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+		            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required in right format.</div>
+		        </div>
+		        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+		            <label for="username">Username</label>
+		            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+		            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+		        </div>
+		        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+		            <label for="password">Password</label>
+		            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+		            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+		        </div>
+		        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cpassword.valid }">
+		            <label for="cpassword">Confirm Password</label>
+		            <input type="password" class="form-control" name="cpassword" [(ngModel)]="model.cpassword" #cpassword="ngModel" required />
+		            <div *ngIf="f.submitted && !cpassword.valid" class="help-block">Confirm Password is required and should be match with Password</div>
+		        </div>
+		        <div class="form-group">
+		            <button [disabled]="loading" class="btn btn-primary">Signup</button>
+		            
+		        </div>
+		        <div class="form-group">
+		            <p>Do you have account? <a [routerLink]="['/login']" >Login Now</a></p>
+		        </div>
+		    </form>
+		</div>	
+	</div>
+</div>
 

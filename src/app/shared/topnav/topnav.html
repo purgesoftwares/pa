@@ -1,10 +1,11 @@
 <div class="header clearfix">
     <nav>
       <ul class="nav nav-pills pull-right">
-        <li role="presentation" class="active"><a [routerLink]="['/','/home']" >Home</a></li>
-        <li role="presentation"><a  [routerLink]="['/login']" >Login</a></li>
+        <li role="presentation" class="active"><a [routerLink]="['/']" >Home</a></li>
+        <li *ngIf="loggedIn" (click) = "logout()" role="presentation"><a href="javascript:void(0);" >Logout</a></li>
+        <li *ngIf="!loggedIn" role="presentation"><a [routerLink]="['/login']" >Login</a></li>
         <li role="presentation"><a [routerLink]="['/signup']" >Signup</a></li>
-        <li role="presentation"><a [routerLink]="['/help']" >Help</a></li>
+        <li role="presentation" (click) = "popToast()" ><a href="javascript:void(0);" >Help</a></li>
       </ul>
     </nav>
     <h3 class="text-muted">LOGO HERE</h3>

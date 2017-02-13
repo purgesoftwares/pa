@@ -29,5 +29,10 @@ export class AppComponent {
   showSnackbar() {
     this._snackbar.open('YUM SNACKS', 'CHEW');
   }
+
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
+
 }
 

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @Component({
 	moduleId: module.id,
@@ -18,5 +21,21 @@ export class SidebarComponent {
 		} else {
 			this.showMenu = element;
 		}
+
+	}
+
+	loggedIn = false;
+	private toasterService: ToasterService;
+	constructor(private router: Router, toasterService: ToasterService) {
+		this.isLoggedIn();
+		this.toasterService = toasterService;
+	}
+
+	getToken() {
+	    return localStorage.getItem('access_token');
+	}
+	isLoggedIn() {
+		var token = this.getToken();
+	    this.loggedIn = (token == null || token == "")?false:true;
 	}
 }

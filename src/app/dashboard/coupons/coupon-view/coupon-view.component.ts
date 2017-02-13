@@ -10,13 +10,12 @@ import { Http } from '@angular/http';
 
 export class CouponViewComponent {
 	model: any={};
-	token:any[];
 	providers: Array<Object>[];
 
 	token = localStorage.getItem('access_token');
 	constructor(private route: ActivatedRoute, private http: Http) {}
 
-	ngOnInit() {
+	/*ngOnInit() {
 	   this.route.queryParams.subscribe(data => {this.model.id =  data['id'],this.model.couponCode =
 	   														data['CouponCode'],this.model.couponNumber =
 	   														data['CouponNumber'],this.model.price =  
@@ -31,7 +30,7 @@ export class CouponViewComponent {
   				.subscribe(
   					data => {this.providers= data.content;
   						for(var i=0; i<this.providers.length; i++ ) {
-  							if(this.providers[i].id == this.model.providerId) {
+  							if(this.providers[i].id && this.providers[i].id == this.model.providerId) {
   								this.model.provider = this.providers[i].provider_name;
   							}
   						}
@@ -39,5 +38,5 @@ export class CouponViewComponent {
   					error => console.log("error"),
   					() => console.log("complete")
   				);
-  	}
+  	}*/
 }

@@ -1,19 +1,25 @@
-<button class="btn btn-default" id="toggle-sidebar" type="button" (click)="eventCalled()">
+<!-- <button class="btn btn-default" id="toggle-sidebar" type="button" (click)="eventCalled()">
     &#9776;
-</button>
+</button> -->
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
-        <a routerLink="/dashboard/home" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!-- <a routerLink="/dashboard/home" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i> Dashboard
-        </a> 
+        </a>  -->
         <a [routerLink]="['coupon']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-tag"></i> Buy Coupons
         </a>
-        <a [routerLink]="['element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-desktop"></i> Bootstrap Elements
+        <a [routerLink]="['profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-user"></i> My Profile
         </a>
-        <a class="list-group-item more-themes" href="http://www.strapui.com/" >
-            More Themes
+        <a [routerLink]="['previous-coupons']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-tag"></i> Previous Coupons
+        </a>
+        <a [routerLink]="['feedback']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-star"></i> Ranking and Feedback
+        </a>
+        <a *ngIf="loggedIn" (click) = "logout()" href="javascript:void(0);" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-sign-out"></i> Logout
         </a>
     </ul>
 </nav>

@@ -19,6 +19,7 @@ import {FrontTopNavComponent} from './shared/index';
 import {FooterComponent} from './shared/index';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 		SignupModule,
 		SharedModule.forRoot(),
 		MaterialModule.forRoot(),
+		ToasterModule
   ],
   declarations: [AppComponent, FrontTopNavComponent, FooterComponent],
   entryComponents: [AppComponent],
