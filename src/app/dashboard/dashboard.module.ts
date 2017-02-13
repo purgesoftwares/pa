@@ -7,6 +7,7 @@ import { UserModule } from './users/user.module';
 
 
 import { CouponModule } from './coupons/coupon.module';
+import { ProfileModule } from './profile/profile.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -21,6 +22,7 @@ import {SidebarComponent} from '../shared/index';
     	HomeModule,
         UserModule,
         CouponModule,
+        ProfileModule,
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

@@ -10,6 +10,9 @@ import { LoginComponent } from './login/index';
 import { SignupComponent } from './signup/index';
 import { DashboardComponent } from './dashboard/index';
 import { CouponComponent } from './dashboard/coupons/index';
+import { ProfileComponent } from './dashboard/profile/index';
+import { HelpComponent } from './page/help/index';
+import { HomeComponent } from './page/home/index';
 import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
 
 export const routes: Routes = [
@@ -24,12 +27,29 @@ export const routes: Routes = [
   	},
 	{
     	path: '',	
-    	component: PageComponent
+    	component: PageComponent,
+      children: [
+            {
+                path: '', 
+                component: HomeComponent,
+                   
+            },
+            {
+                path: 'help', 
+                component: HelpComponent,
+                   
+            }
+      ]
   	},
     {
       path: 'dashboard', 
       component: DashboardComponent,
       children: [
+      		{
+      			path: 'profile', 
+      			component: ProfileComponent,
+               
+    		},
 	    	{
       			path: 'coupon', 
       			component: CouponComponent,

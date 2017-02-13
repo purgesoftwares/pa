@@ -38,4 +38,9 @@ export class SidebarComponent {
 		var token = this.getToken();
 	    this.loggedIn = (token == null || token == "")?false:true;
 	}
+
+	logout() {
+		localStorage.removeItem('access_token');
+		this.router.navigate(['/']);
+	}
 }
