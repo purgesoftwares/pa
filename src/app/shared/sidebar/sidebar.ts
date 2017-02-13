@@ -41,6 +41,7 @@ export class SidebarComponent {
 
 	logout() {
 		localStorage.removeItem('access_token');
+		window.location.href = "";
 		this.router.navigate(['/']);
 	}
 }

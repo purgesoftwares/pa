@@ -13,10 +13,12 @@ import { CouponComponent } from './dashboard/coupons/index';
 import { ProfileComponent } from './dashboard/profile/index';
 import { HelpComponent } from './page/help/index';
 import { HomeComponent } from './page/home/index';
+import { DHomeComponent } from './dashboard/home/index';
 import { AboutComponent } from './page/about/index';
 import { PrivacyComponent } from './page/privacy/index';
-import { OrderConfirmComponent } from './dashboard/coupons/order-confirm/index';
+import { LocationComponent } from './dashboard/location/index';
 import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
+import { OrderConfirmComponent } from './dashboard/coupons/order-confirm/index';
 
 export const routes: Routes = [
 	
@@ -58,24 +60,35 @@ export const routes: Routes = [
       path: 'dashboard', 
       component: DashboardComponent,
       children: [
-      		{
+        {
+            path: '', 
+            component: DHomeComponent,
+               
+        },
+      	{
       			path: 'profile', 
       			component: ProfileComponent,
                
     		},
+        {
+            path: 'location', 
+            component: LocationComponent,
+               
+        },
 	    	{
       			path: 'coupon', 
       			component: CouponComponent,
                
     		},
         {
-            path: 'coupon-view', 
-            component: CouponViewComponent,
-        },
-        {
             path: 'order-confirm', 
             component: OrderConfirmComponent,
-        }
+               
+        },
+            {
+                path: 'coupon-view', 
+                component: CouponViewComponent,
+            }
     	]
     }
 ];

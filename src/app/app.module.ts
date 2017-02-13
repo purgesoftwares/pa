@@ -6,6 +6,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule, Routes  } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { routes } from './app.routes';
 
 import { LoginModule } from './login/login.module';
@@ -20,14 +21,20 @@ import {FooterComponent} from './shared/index';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
+import { AgmCoreModule } from "angular2-google-maps/core";
 
 @NgModule({
   imports: [
     	BrowserModule,
 		HttpModule,
 		RouterModule.forRoot(routes),
+		AgmCoreModule.forRoot({
+          apiKey: "AIzaSyAGMdOZPvWC-k__DNkAk9aGkPZ8x7OIGeY",
+          libraries: ["places"]
+        }),
 		LoginModule,
 		FormsModule,
+		ReactiveFormsModule,
 		DashboardModule,
 		PageModule,
 		CouponViewModule,

@@ -37,6 +37,7 @@ export class LoginComponent {
 			    		localStorage.setItem('access_token', data);
 			    		this.toasterService.pop('success', 'Success',
 			    		 'Logged in successfully!');
+			    		 window.location.href = "/dashboard";
 				    	this.router.navigate(['/dashboard']);
 			    	} else {this.mess= true;
 				    	this.message= 'Username Password is incorrect';

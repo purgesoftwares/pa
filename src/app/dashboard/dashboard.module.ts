@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HomeModule } from './home/home.module';
+import { AgmCoreModule } from "angular2-google-maps/core";
+
+import { DHomeModule } from './home/home.module';
 
 import { UserModule } from './users/user.module';
+import { LocationModule } from './location/location.module';
 
 
 import { CouponModule } from './coupons/coupon.module';
@@ -20,8 +23,13 @@ import {SidebarComponent} from '../shared/index';
     imports: [
         CommonModule,
     	RouterModule,
-    	HomeModule,
+        AgmCoreModule.forRoot({
+          apiKey: "AIzaSyAGMdOZPvWC-k__DNkAk9aGkPZ8x7OIGeY",
+          libraries: ["places"]
+        }),
+    	DHomeModule,
         UserModule,
+        LocationModule,
         OrderConfirmModule,
         CouponModule,
         ProfileModule,

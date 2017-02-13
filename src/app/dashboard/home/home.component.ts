@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 	templateUrl: 'home.component.html'
 })
 
-export class HomeComponent {
+export class DHomeComponent {
 	/* Carousel Variable */
 	myInterval: number = 5000;
 	index: number = 0;

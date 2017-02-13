@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
-import { HomeComponent } from './index';
+import { DHomeComponent } from './index';
 
-export const HomeRoutes: Route[] = [
+export const DHomeRoutes: Route[] = [
   	{
     	path: 'home',
-    	component: HomeComponent
+    	component: DHomeComponent
   	}
 ];

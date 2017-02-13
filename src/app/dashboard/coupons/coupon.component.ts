@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @Component({
 	moduleId: module.id,
@@ -17,10 +18,37 @@ export class CouponComponent {
 	mess = false;
 	succ = false;
 	token = localStorage.getItem('access_token');
+	latitude = localStorage.getItem('latitude');
 	
-	constructor(private http : Http,private router: Router) { }
+	private toasterService: ToasterService;
+
+	constructor( private http : Http,
+				private router: Router, toasterService: ToasterService ) {
+		this.toasterService = toasterService;
+	}
 
 	ngOnInit() {
+		
+		this.http.get('http://54.161.216.233:8090/api/secured/user/current-customer?access_token=' + this.token)
+  				.map(res => res.json())
+  				.subscribe(
+  					data => { if(data.addressId || (this.latitude && this.latitude != "" && this.latitude != null)) {
+                  				
+                  			} else {
+                      			
+                      			this.toasterService.pop('error', 'Set Location',
+			    		 'Set Location first to check nearby Coupons!');
+			    		 		this.router.navigate(['/dashboard/location']);
+                  			}},
+  					error => { if(error.json().error) {
+									this.message = error.json().message;
+									this.mess = true;
+								}},
+  					() => console.log("complete")
+  				);
+
+
+
 		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
