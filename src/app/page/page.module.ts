@@ -4,9 +4,11 @@ import { RouterModule } from '@angular/router';
 import { PageComponent } from './page.component';
 import { HelpModule } from './help/help.module';
 import { HomeModule } from './home/home.module';
+import { AboutModule } from './about/about.module';
+import { PrivacyModule } from './privacy/privacy.module';
 
 @NgModule({
-    imports: [CommonModule, RouterModule, HelpModule, HomeModule],
+    imports: [CommonModule, RouterModule, HelpModule, HomeModule, AboutModule, PrivacyModule],
     declarations: [PageComponent],
     exports: [PageComponent]
 })

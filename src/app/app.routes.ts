@@ -13,6 +13,8 @@ import { CouponComponent } from './dashboard/coupons/index';
 import { ProfileComponent } from './dashboard/profile/index';
 import { HelpComponent } from './page/help/index';
 import { HomeComponent } from './page/home/index';
+import { AboutComponent } from './page/about/index';
+import { PrivacyComponent } from './page/privacy/index';
 import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
 
 export const routes: Routes = [
@@ -37,6 +39,16 @@ export const routes: Routes = [
             {
                 path: 'help', 
                 component: HelpComponent,
+                   
+            },
+            {
+                path: 'about', 
+                component: AboutComponent,
+                   
+            },
+            {
+                path: 'privacy', 
+                component: PrivacyComponent,
                    
             }
       ]
