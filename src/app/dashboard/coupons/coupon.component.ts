@@ -16,7 +16,7 @@ export class CouponComponent {
     message: any= {};
 	mess = false;
 	succ = false;
-	token:string = localStorage.getItem('access_token');
+	token = localStorage.getItem('access_token');
 	
 	constructor(private http : Http,private router: Router) { }
 
