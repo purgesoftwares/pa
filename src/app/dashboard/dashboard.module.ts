@@ -8,6 +8,7 @@ import { UserModule } from './users/user.module';
 
 import { CouponModule } from './coupons/coupon.module';
 import { ProfileModule } from './profile/profile.module';
+import { OrderConfirmModule } from './coupons/order-confirm/order-confirm.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -21,6 +22,7 @@ import {SidebarComponent} from '../shared/index';
     	RouterModule,
     	HomeModule,
         UserModule,
+        OrderConfirmModule,
         CouponModule,
         ProfileModule,
     ],

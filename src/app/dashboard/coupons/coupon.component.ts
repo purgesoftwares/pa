@@ -44,15 +44,19 @@ export class CouponComponent {
 		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:startTime, endTime:endTime}})
 	}
 
+	termsConditions(id : number) {
+		this.router.navigate(['privacy'], { queryParams: { Id:id}});
+	}
+
 	/*search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.coupons.filter((item) => item.couponCode.startsWith(terms));
+			this.coupons = this.coupons.filter(item => item.couponNumber.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}
-	}
+	}*/
    
-    setPage(page: number) {
+    /*setPage(page: number) {
         if (page < 1 || page > this.pager.totalPages) {
             return;
         }

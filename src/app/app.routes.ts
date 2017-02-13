@@ -15,6 +15,7 @@ import { HelpComponent } from './page/help/index';
 import { HomeComponent } from './page/home/index';
 import { AboutComponent } from './page/about/index';
 import { PrivacyComponent } from './page/privacy/index';
+import { OrderConfirmComponent } from './dashboard/coupons/order-confirm/index';
 import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
 
 export const routes: Routes = [
@@ -67,10 +68,14 @@ export const routes: Routes = [
       			component: CouponComponent,
                
     		},
-            {
-                path: 'coupon-view', 
-                component: CouponViewComponent,
-            }
+        {
+            path: 'coupon-view', 
+            component: CouponViewComponent,
+        },
+        {
+            path: 'order-confirm', 
+            component: OrderConfirmComponent,
+        }
     	]
     }
 ];
