@@ -73,7 +73,8 @@ export class CouponComponent {
 	}
 
 	termsConditions(id : number) {
-		this.router.navigate(['privacy'], { queryParams: { Id:id}});
+	console.log(id);
+		this.router.navigate(['dashboard/terms-conditions'], { queryParams: { Id:id}});
 	}
 
 	/*search(terms: string) {

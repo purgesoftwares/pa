@@ -12,6 +12,13 @@
         <div class="col-lg-12">
          <p>{{model.content}}</p>
         </div>
+        <div *ngIf = "id">
+          <input type="checkbox" [(ngModel)]="agree" (ngModelChange)="onChange()"> Agree! Terms & conditions.
+        </div>
       </div>
     </div>
+    <div *ngIf = "id">
+      <button [disabled]="loading" [routerLink]="['/dashboard/order-confirm']" class="pull-right btn btn-primary">Next</button>
+    </div>
+    
 </div>

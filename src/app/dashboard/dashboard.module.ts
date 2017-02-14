@@ -12,6 +12,7 @@ import { LocationModule } from './location/location.module';
 import { CouponModule } from './coupons/coupon.module';
 import { ProfileModule } from './profile/profile.module';
 import { OrderConfirmModule } from './coupons/order-confirm/order-confirm.module';
+import { TermConditionModule } from './coupons/terms-conditions/terms-conditions.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -31,6 +32,7 @@ import {SidebarComponent} from '../shared/index';
         UserModule,
         LocationModule,
         OrderConfirmModule,
+        TermConditionModule,
         CouponModule,
         ProfileModule,
     ],

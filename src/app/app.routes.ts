@@ -19,6 +19,7 @@ import { PrivacyComponent } from './page/privacy/index';
 import { LocationComponent } from './dashboard/location/index';
 import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
 import { OrderConfirmComponent } from './dashboard/coupons/order-confirm/index';
+import { TermConditionComponent } from './dashboard/coupons/terms-conditions/index';
 
 export const routes: Routes = [
 	
@@ -85,10 +86,14 @@ export const routes: Routes = [
             component: OrderConfirmComponent,
                
         },
-            {
-                path: 'coupon-view', 
-                component: CouponViewComponent,
-            }
+        {
+            path: 'coupon-view', 
+            component: CouponViewComponent,
+        },
+        {
+            path: 'terms-conditions', 
+            component: TermConditionComponent,
+        }
     	]
     }
 ];

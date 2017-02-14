@@ -6,11 +6,11 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @Component({
 	moduleId: module.id,
-	selector: 'privacy-cmp',
-	templateUrl: 'privacy.component.html'
+	selector: 'terms-cmp',
+	templateUrl: 'terms-conditions.component.html'
 })
 
-export class PrivacyComponent {
+export class TermConditionComponent {
 	id: number;
 	model: any= {};
 	message: any= {};
@@ -27,7 +27,7 @@ export class PrivacyComponent {
 	ngOnInit() {
 		this.route.queryParams.subscribe(data => {this.id =  data['Id']});
 
-		this.http.get('http://54.161.216.233:8090/api/pages/589c0ba322a9cf5e95adfc94')
+		this.http.get('http://54.161.216.233:8090/api/pages/58a2fab122a9cf32bf047bda')
   				.map(res => res.json())
   				.subscribe(
   					data => { if(data.id) {
@@ -43,6 +43,10 @@ export class PrivacyComponent {
 								}},
   					() => console.log("complete")
   				);
+	}
+
+	onChange() {
+		this.loading= !this.loading;
 	}
 
     popToast() {
