@@ -7,6 +7,8 @@ import { DashboardRoutes } from './dashboard/index';
 
 import { PageComponent } from './page/index';
 import { LoginComponent } from './login/index';
+import { ForgotPasswordComponent } from './forgot-password/index';
+import { ResetPasswordComponent } from './reset-password/index';
 import { SignupComponent } from './signup/index';
 import { DashboardComponent } from './dashboard/index';
 import { CouponComponent } from './dashboard/coupons/index';
@@ -27,9 +29,17 @@ export const routes: Routes = [
     	path: 'signup',	
     	component: SignupComponent
   	},
+    {
+      path: 'login',  
+      component: LoginComponent
+    },
+    {
+      path: 'forgot-password',  
+      component: ForgotPasswordComponent
+    },
   	{
-    	path: 'login',	
-    	component: LoginComponent
+    	path: 'reset-password',	
+    	component: ResetPasswordComponent
   	},
 	{
     	path: '',	

@@ -33,6 +33,7 @@ export class SignupComponent {
 	signup() {
 
 		this.loading = true;
+		
 		this.http.post('http://54.161.216.233:8090/api/public/customer/signup', this.model)
 			//.map((res:Response) => res.text())
 			.subscribe(

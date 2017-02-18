@@ -11,6 +11,8 @@ import { routes } from './app.routes';
 
 import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
+import { ForgotPasswordModule } from './forgot-password/forgotPassword.module';
+import { ResetPasswordModule } from './reset-password/resetPassword.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { PageModule } from './page/page.module';
@@ -36,6 +38,8 @@ import { AgmCoreModule } from "angular2-google-maps/core";
 		FormsModule,
 		ReactiveFormsModule,
 		DashboardModule,
+		ForgotPasswordModule,
+		ResetPasswordModule,
 		PageModule,
 		CouponViewModule,
 		SignupModule,
