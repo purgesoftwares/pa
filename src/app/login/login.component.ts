@@ -42,9 +42,15 @@ export class LoginComponent {
             this.statusChangeCallback(response);
         });
 
+		var objThis = this;
+
         FB.login((result: any) => {
 		    //this.loged = true;
 		    //this.token = result;
+		    FB.getLoginStatus(response => {
+	            objThis.statusChangeCallback(response);
+	        });
+	        
 		  }, { scope: 'email' });
     }
 
