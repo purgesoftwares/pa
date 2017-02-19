@@ -43,7 +43,9 @@
                         <td>{{ coupon.endTime | date: "dd-mm-yyyy h:mm" }}</td>
                         <td><button (click) = "view(coupon.id, coupon.couponCode, coupon.couponNumber, coupon.price, coupon.providerId, coupon.used, coupon.availability, coupon.startTime, coupon.endTime)" class="btn btn-primary">View</button></td>
                         <td><button (click) = termsConditions(coupon.id) class="btn btn-primary">Buy</button></td>
-                        <td><button class="btn btn-primary">Join Friend</button></td>
+                        <td>
+                          <button (click) = "joinFriend(coupon.id, coupon.couponNumber)" class="btn btn-primary">Join Friend</button>
+                        </td>
                     </tr>
                 </tbody> 
              </table>

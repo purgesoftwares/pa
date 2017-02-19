@@ -22,6 +22,7 @@ import { LocationComponent } from './dashboard/location/index';
 import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
 import { OrderConfirmComponent } from './dashboard/coupons/order-confirm/index';
 import { TermConditionComponent } from './dashboard/coupons/terms-conditions/index';
+import { JoinFriendComponent } from './dashboard/coupons/join-friend/index';
 
 export const routes: Routes = [
 	
@@ -103,6 +104,10 @@ export const routes: Routes = [
         {
             path: 'terms-conditions', 
             component: TermConditionComponent,
+        },
+        {
+            path: 'join-friend', 
+            component: JoinFriendComponent,
         }
     	]
     }

@@ -73,8 +73,13 @@ export class CouponComponent {
 	}
 
 	termsConditions(id : number) {
-	console.log(id);
+		console.log(id);
 		this.router.navigate(['dashboard/terms-conditions'], { queryParams: { Id:id}});
+	}
+
+	joinFriend(id, couponNumber) {
+		console.log(id);
+		this.router.navigate(['dashboard/join-friend'], { queryParams: { Id:id,CouponNumber:couponNumber}});
 	}
 
 	/*search(terms: string) {
