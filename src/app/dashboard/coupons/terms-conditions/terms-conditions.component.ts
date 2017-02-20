@@ -96,6 +96,7 @@ export class TermConditionComponent {
 			    		 'Your order successfully placed!');
 
 			    		this.loading = false;
+			    		localStorage.removeItem("joinedfriends");
 
 			    		this.router.navigate(['/dashboard/order-confirm']);
 
