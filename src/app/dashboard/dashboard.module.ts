@@ -14,6 +14,7 @@ import { ProfileModule } from './profile/profile.module';
 import { OrderConfirmModule } from './coupons/order-confirm/order-confirm.module';
 import { TermConditionModule } from './coupons/terms-conditions/terms-conditions.module';
 import { JoinFriendModule } from './coupons/join-friend/joinFriend.module';
+import { PreviousCouponModule } from './previous-coupons/previousCoupon.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -37,6 +38,7 @@ import {SidebarComponent} from '../shared/index';
         JoinFriendModule,
         CouponModule,
         ProfileModule,
+        PreviousCouponModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

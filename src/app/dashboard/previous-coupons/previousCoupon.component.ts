@@ -5,11 +5,11 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @Component({
 	moduleId: module.id,
-	selector: 'coupon-cmp',
-	templateUrl: 'coupon.component.html'
+	selector: 'previous-coupon-cmp',
+	templateUrl: 'previousCoupon.component.html'
 })
 
-export class CouponComponent {
+export class PreviousCouponComponent {
 	coupons;
 	pager: any = {};
 	terms:string = '';
@@ -31,13 +31,6 @@ export class CouponComponent {
 
 	ngOnInit() {
 		
-		console.log(localStorage.getItem('joinedfriends'));
-		if(localStorage.getItem('joinedfriends') != ""){
-			this.isJoinedFriends = true;
-			this.joinedFriends = JSON.parse(localStorage.getItem("joinedfriends"));
-
-		}
-		console.log(this.isJoinedFriends);
 		this.http.get('http://54.161.216.233:8090/api/secured/user/current-customer?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
@@ -58,7 +51,7 @@ export class CouponComponent {
 
 
   		var thisObj = this;
-		this.http.get('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token)
+		this.http.get('http://54.161.216.233:8090/api/secured/purchased-package?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => { 
@@ -66,27 +59,6 @@ export class CouponComponent {
   						if(data.content.length) {
                   				thisObj.coupons= data.content;
                   				this.coupons= data.content;
-                  				if(thisObj.isJoinedFriends){
-
-                  					thisObj.coupons.forEach(function(value, index){
-                  					var count = 0;
-                  					console.log(value); 
-                  					if(thisObj.joinedFriends != null 
-                  						|| thisObj.joinedFriends != undefined ){
-
-	                  						thisObj.joinedFriends.forEach(function(jv, j){
-	                  					
-		                  						if(value.couponNumber
-		                  							== parseInt(jv.couponNumber)){
-		                  							count++;
-		                  						}
-		                  					});
-	                  					var coupon = thisObj.coupons[index];
-	                  					coupon["count"] = count;
-                  						thisObj.coupons[index] = coupon;
-                  					}
-                  					});
-                  				}
   								//this = thisObj;
                   			} else {
                       			this.mess=true;

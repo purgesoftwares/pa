@@ -13,9 +13,13 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
 export class TermConditionComponent {
 	id: number;
 	model: any= {};
+	package : any= {};
+	purchasedPackage : any= {};
 	message: any= {};
 	mess = false;
 	loading = true;
+	accepted = true;
+	token = localStorage.getItem('access_token');
 
 	private toasterService: ToasterService;
 
@@ -23,6 +27,7 @@ export class TermConditionComponent {
 				private router: Router, toasterService: ToasterService ) {
 		this.toasterService = toasterService;
 	}
+
 
 	ngOnInit() {
 		this.route.queryParams.subscribe(data => {this.id =  data['Id']});
@@ -43,14 +48,79 @@ export class TermConditionComponent {
 								}},
   					() => console.log("complete")
   				);
+
+  		this.http.get('http://54.161.216.233:8090/api/secured/coupon-package/'+this.id 
+  			+ "?access_token=" + this.token)
+  				.map(res => res.json())
+  				.subscribe(
+  					data => { if(data.id) {
+                  				this.package = data;
+  								this.purchasedPackage = {
+  									"couponNumber": this.package.couponNumber,
+  									"couponPackage": this.package,
+  									"joinedFriends": JSON.parse(localStorage.getItem("joinedfriends")),
+  									"customerId": "",
+  									"custome": null,
+  									"createdAt": new Date()
+  								};
+
+  								console.log(this.purchasedPackage);
+
+                  			} else {
+                      			this.mess 		=	true;
+                      			this.message	= 	"Invalid Request! There is no records found.";
+                  			}},
+  					error => { if(error.json().error) {
+									this.message = error.json().message;
+									this.mess = true;
+								}},
+  					() => console.log("complete")
+  				);
+
+
 	}
 
+	saveOrder(){
+		let headers = new Headers();
+  		headers.append('content-Type', 'application/json');
+
+  		this.http.post('http://54.161.216.233:8090/api/secured/purchased-package/'
+  			 + '?access_token=' + this.token, this.purchasedPackage, {headers: headers})
+			.map((res) => res.json())
+			.subscribe(
+			    data => { 
+			    	console.log(data);
+			    	if(data.id) {
+			    		
+			    		this.toasterService.pop('success', 'Success',
+			    		 'Your order successfully placed!');
+
+			    		this.loading = false;
+
+			    		this.router.navigate(['/dashboard/order-confirm']);
+
+			    	} else {this.mess= true;
+				    	this.message= 'Value is incorrect';
+				    	this.toasterService.pop('error', 'Invalid',
+			    		 this.message);
+				    	this.loading = false;
+				    }
+				},
+			    error => {console.log(error);
+				    this.mess= true;
+				    this.message= 'Some Error! Please Try After Some Time '; 
+			    	if(error.json().error) {
+									this.message = error.json().message;
+									this.mess = true;
+								}
+				    this.toasterService.pop('error', 'Error',
+			    		 this.message);
+				    this.loading = false;
+				}
+			 );
+	}
 	onChange() {
-		this.loading= !this.loading;
+		this.accepted= !this.accepted;
 	}
-
-    popToast() {
-        this.toasterService.pop('success', 'Args Title', 'Args Body');
-    }
 
 }

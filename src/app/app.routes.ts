@@ -23,6 +23,7 @@ import { CouponViewComponent } from './dashboard/coupons/coupon-view/index';
 import { OrderConfirmComponent } from './dashboard/coupons/order-confirm/index';
 import { TermConditionComponent } from './dashboard/coupons/terms-conditions/index';
 import { JoinFriendComponent } from './dashboard/coupons/join-friend/index';
+import { PreviousCouponComponent } from './dashboard/previous-coupons/index';
 
 export const routes: Routes = [
 	
@@ -108,6 +109,10 @@ export const routes: Routes = [
         {
             path: 'join-friend', 
             component: JoinFriendComponent,
+        },
+        {
+            path: 'previous-coupons', 
+            component: PreviousCouponComponent,
         }
     	]
     }

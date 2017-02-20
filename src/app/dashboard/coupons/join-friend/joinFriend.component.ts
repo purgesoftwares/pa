@@ -52,7 +52,6 @@ export class JoinFriendComponent {
 
 
     		this.toasterService.pop('success', 'Success', 'Successfully Joined.');
-    		window.location.href = "/dashboard/coupon";
 	    	this.router.navigate(['/dashboard/coupon']);
     	} else {
     		this.mess= true;

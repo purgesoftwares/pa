@@ -15,9 +15,9 @@
         <a [routerLink]="['previous-coupons']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-tag"></i> Previous Coupons
         </a>
-        <a [routerLink]="['feedback']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!-- <a [routerLink]="['feedback']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-star"></i> Ranking and Feedback
-        </a>
+        </a> -->
         <a *ngIf="loggedIn" (click) = "logout()" href="javascript:void(0);" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-sign-out"></i> Logout
         </a>

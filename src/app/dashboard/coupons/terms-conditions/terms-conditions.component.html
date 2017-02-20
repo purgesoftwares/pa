@@ -18,7 +18,7 @@
       </div>
     </div>
     <div *ngIf = "id">
-      <button [disabled]="loading" [routerLink]="['/dashboard/order-confirm']" class="pull-right btn btn-primary">Next</button>
+      <button [disabled]="accepted" (click) = saveOrder() class="pull-right btn btn-primary">Next</button>
     </div>
     
 </div>
