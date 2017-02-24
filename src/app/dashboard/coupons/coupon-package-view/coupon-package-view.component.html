@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Coupon View
+            </h1>
+           
+        </div>
+    <a [routerLink]="['/dashboard/coupon']" class="pull-right btn btn-primary">Back</a>
+    </div>
+
+    <div class="table-responsive">
+              <table style="border: 0px" class="table table-hover table-striped">
+                <tbody>
+                    
+                    <tr>
+                        <td>Coupon Number :</td>
+                        <td>{{ model.couponNumber }}</td>
+                    </tr>
+                    <tr>
+                        <td>Price :</td>
+                        <td>{{ model.price }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Radius :</td>
+                        <td>{{ model.radius }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Start Date :</td>
+                        <td>{{ model.startTime | date }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Expiry Date :</td>
+                        <td>{{ model.endTime | date }}</td>
+                    </tr>
+                    <tr *ngIf="model.providers!=0">                        
+                        <td><h3>Providers :</h3></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="model.providers!=0">
+                    <td>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                   <th>Provider Name</th>
+                                   <th>Contact Name</th>
+                                   <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let provider of model.providers">
+                                <tr>
+                                    <td>{{ provider.provider_name }}</td>
+                                    <td>{{ provider.contactName }}</td>
+                                    <td>{{ provider.mainEmail }}</td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </td>
+                    </tr>
+
+                </tbody> 
+            </table>
+    </div>
+</div>

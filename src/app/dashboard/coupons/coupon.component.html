@@ -30,21 +30,23 @@
                          <th>Radius</th>
                          <th>Active Time</th>
                          <th *ngIf="isJoinedFriends" >Friends(Quantity)</th>
-                         <th>Actions</th>
+                         <th colspan="3" >Actions</th>
                   </tr>
                  </thead>
                  <tbody *ngFor="let coupon of coupons">
                     <tr>
                         
-                        <td>{{ coupon.couponNumber }}</td>
+                        <td >{{ coupon.couponNumber }}</td>
                         <td>{{ coupon.price }}</td>
                         <td>{{ coupon.radius }}</td>
                         <td>{{ coupon.endTime | date}}</td>
                         <th *ngIf="isJoinedFriends" >{{coupon.count + 1 }}</th>
                         <!-- <td><button (click) = "view(coupon.id, coupon.couponCode, coupon.couponNumber, coupon.price, coupon.providerId, coupon.used, coupon.availability, coupon.startTime, coupon.endTime)" class="btn btn-primary">View</button></td> -->
-                        <td><button (click) = termsConditions(coupon.id) class="btn btn-primary">Buy</button></td>
-                        <td>
+                        <td ><button (click) = buy(coupon.id) class="btn btn-primary">Buy</button>
+                        
                           <button (click) = "joinFriend(coupon.id, coupon.couponNumber)" class="btn btn-primary">Join Friend</button>
+                        
+                          <button (click) = "view(coupon.id)" class="btn btn-default">View</button>
                         </td>
                     </tr>
                 </tbody> 

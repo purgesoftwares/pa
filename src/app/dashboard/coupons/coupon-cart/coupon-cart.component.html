@@ -1,0 +1,29 @@
+<div class="row">
+	<h3> Order Coupon</h3>
+	<div class="">
+	<form class="form-inline">
+		 <br>
+		 <br>
+		<div class="form-group">
+		    <label for="exampleInputName2">Number of Coupons : {{model.quantity}}</label>
+		  
+		    
+		 </div>
+		 <br>
+		 <br>
+		 <br>
+		 <div class="form-group">
+		    <label for="exampleInputName2">Total Price   :  {{model.totalPrice}}</label>
+		    
+		 </div>
+		 <br>
+		 <br>
+		 <div class="form-group">
+                    <button (click) = confirmPaypal(model.id) [disabled]="loading" class="btn btn-primary">Pay with Paypal</button>
+                    
+                </div>
+		 <br>
+		 <br>
+		</form>
+	</div>
+</div>

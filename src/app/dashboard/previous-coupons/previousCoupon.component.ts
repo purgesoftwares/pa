@@ -51,7 +51,7 @@ export class PreviousCouponComponent {
 
 
   		var thisObj = this;
-		this.http.get('http://54.161.216.233:8090/api/secured/purchased-package?access_token=' + this.token)
+		this.http.get('http://54.161.216.233:8090/api/secured/purchased-package/my?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => { 
@@ -77,14 +77,8 @@ export class PreviousCouponComponent {
 		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:startTime, endTime:endTime}})
 	}
 
-	termsConditions(id : number) {
-		console.log(id);
-		this.router.navigate(['dashboard/terms-conditions'], { queryParams: { Id:id}});
-	}
-
-	joinFriend(id, couponNumber) {
-		console.log(id);
-		this.router.navigate(['dashboard/join-friend'], { queryParams: { Id:id,CouponNumber:couponNumber}});
+	viewDetails(id) {
+		this.router.navigate(['/dashboard/coupon-details/'],{ queryParams: { id:id}})
 	}
 
 	/*search(terms: string) {

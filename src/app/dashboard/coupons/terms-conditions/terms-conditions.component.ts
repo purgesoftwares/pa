@@ -13,6 +13,7 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
 export class TermConditionComponent {
 	id: number;
 	model: any= {};
+	customer: any= {};
 	package : any= {};
 	purchasedPackage : any= {};
 	message: any= {};
@@ -30,7 +31,7 @@ export class TermConditionComponent {
 
 
 	ngOnInit() {
-		this.route.queryParams.subscribe(data => {this.id =  data['Id']});
+		this.route.queryParams.subscribe(data => {this.id =  data['id']});
 
 		this.http.get('http://54.161.216.233:8090/api/pages/58a2fab122a9cf32bf047bda')
   				.map(res => res.json())
@@ -49,13 +50,44 @@ export class TermConditionComponent {
   					() => console.log("complete")
   				);
 
+	this.http.get('http://54.161.216.233:8090/api/secured/user/current-customer?access_token=' + this.token)
+  				.map(res => res.json())
+  				.subscribe(
+  					data => {
+  						console.log(data); 
+  						if(data.id) {
+  								
+                  				this.customer = data;
+                  				this.purchasedPackage.customer = this.customer;
+                  				this.purchasedPackage.customerId = this.customer.id;
+                  				
+                  			} else {
+                      			this.toasterService.pop('error', 'Invalid Request',
+			    		 		'No Records');
+			    		 		this.router.navigate(['/']);
+                  			}},
+  					error => { if(error.json().error) {
+									this.message = error.json().message;
+									this.mess = true;
+										this.toasterService.pop('error', 'Invalid Request',
+				    		 		this.message);
+				    		 		this.router.navigate(['/']);
+								}},
+  					() => console.log("complete")
+  				);
+
+
   		this.http.get('http://54.161.216.233:8090/api/secured/coupon-package/'+this.id 
   			+ "?access_token=" + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => { if(data.id) {
                   				this.package = data;
-  								this.purchasedPackage = {
+                  				this.purchasedPackage.couponNumber = this.package.couponNumber;
+                  				this.purchasedPackage.couponPackage = this.package;
+                  				this.purchasedPackage.joinedFriends = JSON.parse(localStorage.getItem("joinedfriends"));
+                  				this.purchasedPackage.createdAt = new Date();
+/*  								this.purchasedPackage = {
   									"couponNumber": this.package.couponNumber,
   									"couponPackage": this.package,
   									"joinedFriends": JSON.parse(localStorage.getItem("joinedfriends")),
@@ -63,7 +95,7 @@ export class TermConditionComponent {
   									"custome": null,
   									"createdAt": new Date()
   								};
-
+*/
   								console.log(this.purchasedPackage);
 
                   			} else {
@@ -77,10 +109,10 @@ export class TermConditionComponent {
   					() => console.log("complete")
   				);
 
-
 	}
 
 	saveOrder(){
+		
 		let headers = new Headers();
   		headers.append('content-Type', 'application/json');
 
@@ -91,14 +123,13 @@ export class TermConditionComponent {
 			    data => { 
 			    	console.log(data);
 			    	if(data.id) {
-			    		
-			    		this.toasterService.pop('success', 'Success',
+				    	this.toasterService.pop('success', 'Success',
 			    		 'Your order successfully placed!');
 
 			    		this.loading = false;
 			    		localStorage.removeItem("joinedfriends");
 
-			    		this.router.navigate(['/dashboard/order-confirm']);
+			    		this.router.navigate(['/dashboard/order-confirm/'],{ queryParams: { id:data.id}});
 
 			    	} else {this.mess= true;
 				    	this.message= 'Value is incorrect';

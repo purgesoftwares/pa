@@ -32,6 +32,16 @@
 		            <p>Do you have account? <a [routerLink]="['/login']" >Login Now</a></p>
 		        </div>
 		    </form>
+		    <div class="form-group"><h2>OR</h2></div>
+
+		        <div>
+					<button class="btn btn-lg btn-social btn-facebook" style="font-size: 1.5em;" (click)="onFacebookLoginClick()">
+					    <i class="fa fa-facebook fa-fw"></i>Signup with Facebook
+					</button>
+					<div class="btn btn-lg btn-social btn-google" id="googleBtn"><i class="fa fa-google fa-fw"></i> Signup with Google</div>
+				</div>
+				<br>
+				<br>
 		</div>	
 	</div>
 </div>

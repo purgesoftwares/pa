@@ -9,6 +9,8 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 declare const FB:any;
 
+declare const gapi: any;
+
 @Component({
 	moduleId: module.id,
 	selector: 'login-cmp',
@@ -18,6 +20,7 @@ declare const FB:any;
 export class LoginComponent {
 	model: any= {};
 	user: any= {};
+	guser: any= {};
 	objThis: any= {};
 	message: any= {};
 	mess = false;
@@ -37,11 +40,89 @@ export class LoginComponent {
         });
 	}
 
+
+	public auth2: any;
+  	public googleInit() {
+	    let that = this;
+	    gapi.load('auth2', function () {
+	      that.auth2 = gapi.auth2.init({
+	        client_id: '1088884193573-2pef80d27eqn3htfdk4mds83glmsar3c.apps.googleusercontent.com',
+	        cookiepolicy: 'single_host_origin',
+	        scope: 'profile email'
+	      });
+	      that.attachSignin(document.getElementById('googleBtn'));
+	    });
+	  }
+	  
+  public attachSignin(element) {
+    let that = this;
+    this.auth2.attachClickHandler(element, {},
+      function (googleUser) {
+
+      	console.log(googleUser);
+      	console.log(googleUser);
+        let profile = googleUser.getBasicProfile();
+        that.guser = { "id" : profile.getId(), "name" : profile.getName(), "email" : profile.getEmail() };
+        that.googlesignup();
+        /*console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());*/
+        //YOUR CODE HERE
+
+
+      }, function (error) {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+  }
+
+ngAfterViewInit(){
+      this.googleInit();
+}
+
+googlesignup() {
+
+		this.loading = true;
+		this.model = this.guser;
+		
+		this.http.post('http://54.161.216.233:8090/api/public/customer/googlesignup', this.model)
+			.map((res:Response) => res.text())
+			.subscribe(
+			    data => { 
+			    		
+			    	if(data) {
+			    		
+			    		this.toasterService.pop('success', 'Success',
+			    		 'Your account successfully created!');
+			    		localStorage.setItem('access_token', data);
+			    		window.location.href = "/dashboard";
+				    	this.router.navigate(['/dashboard']);
+						
+			    	} else {
+			    		this.mess= true;
+				    	this.message= 'Value is incorrect';
+				    	this.toasterService.pop('error', 'Invalid',
+			    		 this.message);
+				    	this.loading = false;
+				    }
+				},
+			    error => {console.log(error);
+				    this.mess= true;
+				    this.message= 'Some Error! Please Try After Some Time '; 
+				    this.toasterService.pop('error', 'Error',
+			    		 this.message);
+				    this.loading = false;
+				}
+			 );
+	}
+
+
 	onFacebookLoginClick() {
-		FB.getLoginStatus(response => {
+		/*FB.getLoginStatus(response => {
             this.statusChangeCallback(response);
         });
-
+*/
 		var objThis = this;
 
         FB.login((result: any) => {
@@ -72,7 +153,7 @@ export class LoginComponent {
         });*/
     }
 
-	checkaccount() {
+	/*checkaccount() {
 
 		this.loading = true;
 		this.http.get('http://54.161.216.233:8090/api/public/user/check-account/'+this.user.email)
@@ -98,23 +179,25 @@ export class LoginComponent {
 				}
 			 );
 	}
-
-	signup() {
+*/
+	fbsignup() {
 
 		this.loading = true;
-		this.model = {"email": this.user.email, "username": this.user.name, "password": "123456", "cpassword": "123456"}
-		console.log(this.model); 
-		this.http.post('http://54.161.216.233:8090/api/public/customer/signup', this.model)
-			//.map((res:Response) => res.text())
+		this.model = this.user;
+		
+		this.http.post('http://54.161.216.233:8090/api/public/customer/fbsignup', this.model)
+			.map((res:Response) => res.text())
 			.subscribe(
 			    data => { 
-
-			    	if(data.status == 200) {
-			    		var datamodel = JSON.stringify(eval("(" + data.text() + ")"));
+			    		
+			    	if(data) {
+			    		
 			    		this.toasterService.pop('success', 'Success',
 			    		 'Your account successfully created!');
-			    		//localStorage.setItem('access_token', data);
-						this.dlogin();
+			    		localStorage.setItem('access_token', data);
+			    		window.location.href = "/dashboard";
+				    	this.router.navigate(['/dashboard']);
+						
 			    	} else {
 			    		this.mess= true;
 				    	this.message= 'Value is incorrect';
@@ -138,11 +221,12 @@ export class LoginComponent {
     	var objThis = this;
 	    FB.api('/me?fields=id,name,first_name,email,gender,picture.width(150).height(150),age_range',
 	        function(result) {
+	        	
 	            if (result && !result.error) {
 	                objThis.user = result;
-	                console.log(objThis.user);
-	                //objThis.checkaccount();
-	                objThis.dlogin();
+	            
+	                objThis.fbsignup();
+	                //objThis.dlogin();
 	            } else {
 	                console.log(result.error);
 	            }
@@ -150,60 +234,14 @@ export class LoginComponent {
 	}
 
 
-
-	dlogin() {
-
-		this.loading = true;
-		this.model = {"username":"shankar@purgesoft.com", "password":"123456" };
-		this.http.post('http://54.161.216.233:8090/api/oauth/token', this.model)
-			.map((res:Response) => res.text())
-			.subscribe(
-			    data => { 
-			    	if(data) {
-			    		localStorage.setItem('access_token', data);
-			    		this.toasterService.pop('success', 'Success',
-			    		 'Logged in successfully!');
-			    		 window.location.href = "/dashboard";
-				    	this.router.navigate(['/dashboard']);
-			    	} else {this.mess= true;
-				    	this.message= 'Username Password is incorrect';
-				    	this.toasterService.pop('error', 'Invalid',
-			    		 this.message);
-				    	this.loading = false;}},
-			    error => {console.log(error);
-				    this.mess= true;
-				    this.message= 'Some Error! Please Try After Some Time '; 
-				     this.toasterService.pop('error', 'Error',
-			    		 this.message);
-				    this.loading = false;
-				}
-			 );
-
-		/*this.loading = true;
-		this.http.get('http://localhost:8090/api/oauth/token/fb/'+this.user.email)
-			.map((res:Response) => res.text())
-			.subscribe(
-			    data => { 
-			    	console.log(data);
-			    	
-				    },
-			    error => {console.log(error);
-				    this.mess= true;
-				    this.message= 'Some Error! Please Try After Some Time '; 
-				     this.toasterService.pop('error', 'Error',
-			    		 this.message);
-				    this.loading = false;
-				}
-			 );*/
-	}
-
 	login() {
 
 		this.loading = true;
-		this.http.post('http://54.161.216.233:8090/api/oauth/token', this.model)
+		this.http.post('http://54.161.216.233:8090/api/oauth/token/client', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
 			    data => { 
+			    	//console.log(data);
 			    	if(data) {
 			    		localStorage.setItem('access_token', data);
 			    		this.toasterService.pop('success', 'Success',
@@ -216,8 +254,9 @@ export class LoginComponent {
 			    		 this.message);
 				    	this.loading = false;}},
 			    error => {console.log(error);
+			    	error = error.json();
 				    this.mess= true;
-				    this.message= 'Some Error! Please Try After Some Time '; 
+				    this.message= (error.message?error.message:(error.error?error.error:'Some Error! Please Try After Some Time ')); 
 				     this.toasterService.pop('error', 'Error',
 			    		 this.message);
 				    this.loading = false;

@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Active Coupon Details
+            </h1>
+           
+        </div>
+    </div>
+
+    <div class="table-responsive">
+              <table style="border: 0px" class="table table-hover table-striped">
+                <tbody>
+                    
+                    <tr>
+                        <td>Coupon Number :</td>
+                        <td>{{ model.couponNumber }}</td>
+                    </tr>
+                    <tr *ngIf="model.couponPackage" >
+                        <td>Price :</td>
+                        <td>{{ model.couponPackage.price }}</td>
+                    </tr>
+                    <tr *ngIf="model.couponPackage" >                        
+                        <td>Radius :</td>
+                        <td>{{ model.couponPackage.radius }}</td>
+                    </tr>
+                    <tr *ngIf="model.couponPackage" >                        
+                        <td>Start Date :</td>
+                        <td>{{ model.couponPackage.startTime | date }}</td>
+                    </tr>
+                    <tr *ngIf="model.couponPackage" >                        
+                        <td>Expiry Date :</td>
+                        <td>{{ model.couponPackage.endTime | date }}</td>
+                    </tr>
+                    <tr *ngIf="coupons!=0">                        
+                        <td><h3>Coupons :</h3></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="coupons!=0">
+                    <td>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                   <th>Coupon Code</th>
+                                   <th>Provider Name </th>
+                                   <th>Coupon Address </th>
+                                   <th> Direction </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let coupon of coupons">
+                                <tr>
+                                    <td>{{ coupon.couponCode }}</td>
+                                    <td>{{ coupon.provider.provider_name }}</td>
+                                    <td>{{ coupon.address.address1 }} {{coupon.address.address2}} {{coupon.address.city}} {{coupon.address.postalCode}} {{coupon.address.country}}</td>
+                                    <td><i class="fa fa-exchange" aria-hidden="true"></i></td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </td>
+                    </tr>
+
+                </tbody> 
+            </table>
+    </div>
+</div>

@@ -15,6 +15,10 @@ import { OrderConfirmModule } from './coupons/order-confirm/order-confirm.module
 import { TermConditionModule } from './coupons/terms-conditions/terms-conditions.module';
 import { JoinFriendModule } from './coupons/join-friend/joinFriend.module';
 import { PreviousCouponModule } from './previous-coupons/previousCoupon.module';
+import { CouponCartModule } from './coupons/coupon-cart/coupon-cart.module';
+import { CouponDetailsModule } from './coupons/coupon-details/coupon-details.module';
+import { SendAnotherEmailModule } from './coupons/send-another-email/send-another-email.module';
+import { ThankYouModule } from './coupons/thank-you/thank-you.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -38,7 +42,11 @@ import {SidebarComponent} from '../shared/index';
         JoinFriendModule,
         CouponModule,
         ProfileModule,
-        PreviousCouponModule
+        PreviousCouponModule,
+        CouponCartModule,
+        CouponDetailsModule,
+        SendAnotherEmailModule,
+        ThankYouModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

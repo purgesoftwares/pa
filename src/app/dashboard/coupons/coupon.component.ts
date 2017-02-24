@@ -100,14 +100,14 @@ export class CouponComponent {
   				);
 	}
 
-	view(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+	view(id) {
 		
-		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:startTime, endTime:endTime}})
+		this.router.navigate(['/dashboard/coupon-package-view/'],{ queryParams: { id:id}})
 	}
 
-	termsConditions(id : number) {
+	buy(id : number) {
 		console.log(id);
-		this.router.navigate(['dashboard/terms-conditions'], { queryParams: { Id:id}});
+		this.router.navigate(['dashboard/coupon-cart'], { queryParams: { id:id}});
 	}
 
 	joinFriend(id, couponNumber) {

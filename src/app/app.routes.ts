@@ -24,6 +24,11 @@ import { OrderConfirmComponent } from './dashboard/coupons/order-confirm/index';
 import { TermConditionComponent } from './dashboard/coupons/terms-conditions/index';
 import { JoinFriendComponent } from './dashboard/coupons/join-friend/index';
 import { PreviousCouponComponent } from './dashboard/previous-coupons/index';
+import { CouponPackageViewComponent } from './dashboard/coupons/coupon-package-view/index';
+import { CouponCartComponent } from './dashboard/coupons/coupon-cart/index';
+import { CouponDetailsComponent } from './dashboard/coupons/coupon-details/index';
+import { SendAnotherEmailComponent } from './dashboard/coupons/send-another-email/index';
+import { ThankYouComponent } from './dashboard/coupons/thank-you/index';
 
 export const routes: Routes = [
 	
@@ -90,12 +95,34 @@ export const routes: Routes = [
         },
 	    	{
       			path: 'coupon', 
-      			component: CouponComponent,
+      			component: CouponComponent
                
     		},
         {
+            path: 'coupon-package-view',
+            component: CouponPackageViewComponent
+        },
+        {
+            path: 'coupon-cart',
+            component: CouponCartComponent
+        },
+        {
+            path: 'coupon-details',
+            component: CouponDetailsComponent
+        },
+        {
             path: 'order-confirm', 
             component: OrderConfirmComponent,
+               
+        },
+        {
+            path: 'send-another-email', 
+            component: SendAnotherEmailComponent,
+               
+        },
+        {
+            path: 'thank-you', 
+            component: ThankYouComponent,
                
         },
         {
