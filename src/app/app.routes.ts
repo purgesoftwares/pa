@@ -1,15 +1,24 @@
 import { Routes } from '@angular/router';
 
 import { LoginRoutes } from './login/index';
+import { ProviderLoginRoutes } from './providerlogin/index';
 import { SignupRoutes } from './signup/index';
+import { ProviderSignupRoutes } from './providersignup/index';
 import { PageRoutes } from './page/index';
 import { DashboardRoutes } from './dashboard/index';
 
 import { PageComponent } from './page/index';
 import { LoginComponent } from './login/index';
+import { ProviderLoginComponent } from './providerlogin/index';
+
 import { ForgotPasswordComponent } from './forgot-password/index';
+import { ProviderForgotPasswordComponent } from './provider-forgot-password/index';
+
 import { ResetPasswordComponent } from './reset-password/index';
+import { ProviderResetPasswordComponent } from './provider-reset-password/index';
+
 import { SignupComponent } from './signup/index';
+import { ProviderSignupComponent } from './providersignup/index';
 import { DashboardComponent } from './dashboard/index';
 import { CouponComponent } from './dashboard/coupons/index';
 import { ProfileComponent } from './dashboard/profile/index';
@@ -33,20 +42,36 @@ import { ThankYouComponent } from './dashboard/coupons/thank-you/index';
 export const routes: Routes = [
 	
 	{
-    	path: 'signup',	
-    	component: SignupComponent
+        path: 'signup', 
+        component: SignupComponent
+    },
+    {
+    	path: 'providersignup',	
+    	component: ProviderSignupComponent
   	},
     {
       path: 'login',  
       component: LoginComponent
     },
+     {
+      path: 'providerlogin',  
+      component: ProviderLoginComponent
+    },
     {
       path: 'forgot-password',  
       component: ForgotPasswordComponent
     },
+    {
+      path: 'provider-forgot-password',  
+      component: ProviderForgotPasswordComponent
+    },
   	{
-    	path: 'reset-password',	
-    	component: ResetPasswordComponent
+        path: 'reset-password', 
+        component: ResetPasswordComponent
+    },
+    {
+    	path: 'provider-reset-password',	
+    	component: ProviderResetPasswordComponent
   	},
 	{
     	path: '',	

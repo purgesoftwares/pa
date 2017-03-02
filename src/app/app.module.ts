@@ -10,9 +10,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { routes } from './app.routes';
 
 import { LoginModule } from './login/login.module';
+import { ProviderLoginModule } from './providerlogin/providerlogin.module';
+
 import { SignupModule } from './signup/signup.module';
+import { ProviderSignupModule } from './providersignup/providersignup.module';
+
 import { ForgotPasswordModule } from './forgot-password/forgotPassword.module';
+import { ProviderForgotPasswordModule } from './provider-forgot-password/providerforgotPassword.module';
+
 import { ResetPasswordModule } from './reset-password/resetPassword.module';
+import { ProviderResetPasswordModule } from './provider-reset-password/providerresetPassword.module';
+
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { PageModule } from './page/page.module';
@@ -35,14 +43,18 @@ import { AgmCoreModule } from "angular2-google-maps/core";
           libraries: ["places"]
         }),
 		LoginModule,
+		ProviderLoginModule,
 		FormsModule,
 		ReactiveFormsModule,
 		DashboardModule,
 		ForgotPasswordModule,
+		ProviderForgotPasswordModule,
 		ResetPasswordModule,
+		ProviderResetPasswordModule,
 		PageModule,
 		CouponViewModule,
 		SignupModule,
+		ProviderSignupModule,
 		SharedModule.forRoot(),
 		MaterialModule.forRoot(),
 		ToasterModule
