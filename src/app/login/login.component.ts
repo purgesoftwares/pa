@@ -246,8 +246,11 @@ googlesignup() {
 			    		localStorage.setItem('access_token', data);
 			    		this.toasterService.pop('success', 'Success',
 			    		 'Logged in successfully!');
-			    		 window.location.href = "/dashboard";
-				    	this.router.navigate(['/dashboard']);
+			    		setTimeout(function(){ 
+				    		window.location.href = "/dashboard";
+					    	this.router.navigate(['/dashboard']);
+				    	}, 300);
+			    		
 			    	} else {this.mess= true;
 				    	this.message= 'Username Password is incorrect';
 				    	this.toasterService.pop('error', 'Invalid',

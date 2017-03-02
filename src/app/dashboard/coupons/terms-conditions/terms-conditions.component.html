@@ -18,7 +18,13 @@
       </div>
     </div>
     <div *ngIf = "id">
-      <button [disabled]="accepted" (click) = saveOrder() class="pull-right btn btn-primary">I Agree, Pay Now</button>
+
+      <div class="text-right" style="float: right;">
+        <div id="paypal-button"></div>
+      </div>
+
+
+      <!-- <button [disabled]="accepted" (click) = saveOrder() class="pull-right btn btn-primary">I Agree, Pay Now</button> -->
     </div>
     <br>
     <br>

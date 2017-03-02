@@ -28,7 +28,7 @@
     "angular2-toaster": "^2.0.0",
     "core-js": "^2.4.0",
     "font-awesome": "^4.7.0",
-    "jquery": "3.0.0",
+    "jquery": "^3.0.0",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
@@ -39,6 +39,7 @@
     "@types/googlemaps": "^3.26.1",
     "@types/hammerjs": "^2.0.32",
     "@types/jasmine": "^2.2.30",
+    "@types/jquery": "^2.0.40",
     "angular-cli": "1.0.0-beta.24",
     "codelyzer": "~0.0.26",
     "firebase-tools": "^3.0.7",

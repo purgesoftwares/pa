@@ -6,6 +6,7 @@ import { SignupRoutes } from './signup/index';
 import { ProviderSignupRoutes } from './providersignup/index';
 import { PageRoutes } from './page/index';
 import { DashboardRoutes } from './dashboard/index';
+import { LoggedInGuard } from './logged-in.guard';
 
 import { PageComponent } from './page/index';
 import { LoginComponent } from './login/index';
@@ -73,7 +74,7 @@ export const routes: Routes = [
     	path: 'provider-reset-password',	
     	component: ProviderResetPasswordComponent
   	},
-	{
+	 {
     	path: '',	
     	component: PageComponent,
       children: [
@@ -102,6 +103,7 @@ export const routes: Routes = [
     {
       path: 'dashboard', 
       component: DashboardComponent,
+      canActivate: [LoggedInGuard],
       children: [
         {
             path: '', 

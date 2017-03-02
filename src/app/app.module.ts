@@ -4,7 +4,7 @@ import {MaterialModule} from '@angular/material';
 import {AppComponent} from './app.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule, Routes  } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { routes } from './app.routes';
@@ -32,6 +32,10 @@ import {FooterComponent} from './shared/index';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
 import { AgmCoreModule } from "angular2-google-maps/core";
+import { UserService } from './user.service';
+import { LoggedInGuard } from './logged-in.guard';
+import { ExtendedHttpService } from './extended-http.service';
+
 
 @NgModule({
   imports: [
@@ -62,5 +66,6 @@ import { AgmCoreModule } from "angular2-google-maps/core";
   declarations: [AppComponent, FrontTopNavComponent, FooterComponent],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent],
+  providers: [UserService, LoggedInGuard/*, { provide: Http, useClass: ExtendedHttpService }*/]
 })
 export class AppModule { }

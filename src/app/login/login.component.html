@@ -1,6 +1,19 @@
 <div class="login-page">
 	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
+		<div class="col-lg-3 ">
+			<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+		    <ul class="list-group">
+		        
+		        <a [routerLink]="['login']" [routerLinkActive]="['router-link-active']" class="active list-group-item">
+		            Login as Customer
+		        </a>
+		        <a [routerLink]="['provider-login']" class="list-group-item">
+		            Login as Provider 
+		        </a>
+		    </ul>
+		</nav>
+		</div>
+		<div class="col-lg-8">
 			<h1>Customer</h1>
 			<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
 		        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">

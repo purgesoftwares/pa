@@ -3,6 +3,10 @@ import { Http, Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
+import * as $ from 'jquery';
+//declare var $:JQueryStatic;
+
+declare const PAYPAL: any;
 
 @Component({
 	moduleId: module.id,
@@ -20,6 +24,8 @@ export class TermConditionComponent {
 	mess = false;
 	loading = true;
 	accepted = true;
+	isJoinedFriends = false;
+	joinedFriends;
 	token = localStorage.getItem('access_token');
 
 	private toasterService: ToasterService;
@@ -31,6 +37,15 @@ export class TermConditionComponent {
 
 
 	ngOnInit() {
+		this.package.quantity = 1;
+		if(localStorage.getItem('joinedfriends') != ""){
+			this.isJoinedFriends = true;
+			this.joinedFriends = JSON.parse(localStorage.getItem("joinedfriends"));
+			if(this.joinedFriends)
+			this.package.quantity += this.joinedFriends.length;
+
+		}
+
 		this.route.queryParams.subscribe(data => {this.id =  data['id']});
 
 		this.http.get('http://54.161.216.233:8090/api/pages/58a2fab122a9cf32bf047bda')
@@ -82,11 +97,16 @@ export class TermConditionComponent {
   				.map(res => res.json())
   				.subscribe(
   					data => { if(data.id) {
+  								var quantity = this.package.quantity;
                   				this.package = data;
                   				this.purchasedPackage.couponNumber = this.package.couponNumber;
                   				this.purchasedPackage.couponPackage = this.package;
                   				this.purchasedPackage.joinedFriends = JSON.parse(localStorage.getItem("joinedfriends"));
                   				this.purchasedPackage.createdAt = new Date();
+                  				this.package.quantity = quantity;
+                  				this.package.totalPrice = this.package.quantity*(parseFloat(this.package.price));
+                  				console.log(this.package);
+                  				console.log(this.package.totalPrice);
 /*  								this.purchasedPackage = {
   									"couponNumber": this.package.couponNumber,
   									"couponPackage": this.package,
@@ -95,7 +115,74 @@ export class TermConditionComponent {
   									"custome": null,
   									"createdAt": new Date()
   								};
+
+
 */
+
+						    var that = this;
+						    
+						    $.getScript( "https://www.paypalobjects.com/api/checkout.js", function( data, textStatus, jqxhr ) {
+							/*  console.log( data ); // Data returned
+							  console.log( textStatus ); // Success
+							  console.log( jqxhr.status ); // 200
+							  console.log( "Load was performed." );*/
+							  	PAYPAL.Button.render({
+
+							        env: 'sandbox', // Specify 'sandbox' for the test environment
+
+							        client: {
+							            sandbox:'AVsoN1gspbuDNVnJAs3LJq6Q0E1TpZj4ecUh4umKBfT3O_zv3YxELUkipkYpEfeSqbC9_R1rkkcXJUI-',
+							            //sandbox:    'AXvLRfch7m8LoA-H5D3WrbdA8ZRgkhwGBUjkcRugHpfhvjiijgE-117R16tJG4oRpln71OfzIgsp28Y8',
+							            production: 'xxxxxxxxx'
+							        },
+							        onClick: function(){
+							        	console.log("on-click");
+							        	return false;
+							        },
+							        payment: function() {
+							            // Set up the payment here, when the buyer clicks on the button
+							            var env    = this.props.env;
+							            var client = this.props.client;
+							            console.log(that.accepted);
+							            console.log(that.model.totalPrice);
+
+							            if(that.accepted){
+							            	alert("Please accept Terms and Conditions before payment.");
+							            	return false;
+							            }else{
+							            	
+								            return PAYPAL.rest.payment.create(env, client, {
+								                transactions: [
+								                    {
+								                        amount: { total: that.package.totalPrice, currency: 'USD' }
+								                    }
+								                ]
+								            });
+							            }
+							        
+							        },
+
+							        commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+
+
+							        onAuthorize: function(data, actions) {
+							        	console.log(data);
+							        	console.log(actions);
+							        	return actions.payment.execute().then(function() {
+							                // Show a success page to the buyer
+							                console.log(data);
+							        		console.log(actions);
+							        		that.saveOrder();
+							            });
+							            // Execute the payment here, when the buyer approves the transaction
+							       }
+							            
+							    }, '#paypal-button');
+
+							  	
+							});
+
+
   								console.log(this.purchasedPackage);
 
                   			} else {
