@@ -115,13 +115,15 @@ export class CouponComponent {
 		this.router.navigate(['dashboard/join-friend'], { queryParams: { Id:id,CouponNumber:couponNumber}});
 	}
 
-	/*search(terms: string) {
+	search(terms: string) {
+		console.log(terms);
 		if(terms) {
-			this.coupons = this.coupons.filter(item => item.couponNumber.startsWith(terms));
+			console.log(terms);
+			this.coupons = this.coupons.filter((item) => item.couponNumber.toString().startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}
-	}*/
+	}
    
     /*setPage(page: number) {
         if (page < 1 || page > this.pager.totalPages) {
