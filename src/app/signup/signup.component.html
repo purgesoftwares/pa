@@ -1,6 +1,20 @@
 <div class="signup-page">
 	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
+		<div class="col-lg-3 ">
+			<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+			    <ul class="list-group">
+			        
+			        <a [routerLink]="['/signup']" [routerLinkActive]="['router-link-active']" class="active list-group-item">
+			            Signup as Customer
+			        </a>
+			        <a [routerLink]="['/provider-signup']" class="list-group-item">
+			            Signup as Provider 
+			        </a>
+			    </ul>
+			</nav>
+		</div>
+
+		<div class="col-lg-9">
 			<div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
 			<h1>Customer Signup</h1>
 			<form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>

@@ -47,7 +47,7 @@ export const routes: Routes = [
         component: SignupComponent
     },
     {
-    	path: 'providersignup',	
+    	path: 'provider-signup',	
     	component: ProviderSignupComponent
   	},
     {
@@ -55,7 +55,7 @@ export const routes: Routes = [
       component: LoginComponent
     },
      {
-      path: 'providerlogin',  
+      path: 'provider-login',  
       component: ProviderLoginComponent
     },
     {
