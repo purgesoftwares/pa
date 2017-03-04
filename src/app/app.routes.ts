@@ -7,6 +7,7 @@ import { ProviderSignupRoutes } from './providersignup/index';
 import { PageRoutes } from './page/index';
 import { DashboardRoutes } from './dashboard/index';
 import { LoggedInGuard } from './logged-in.guard';
+import { ProviderLoggedInGuard } from './provider-logged-in.guard';
 
 import { PageComponent } from './page/index';
 import { LoginComponent } from './login/index';
@@ -21,11 +22,18 @@ import { ProviderResetPasswordComponent } from './provider-reset-password/index'
 import { SignupComponent } from './signup/index';
 import { ProviderSignupComponent } from './providersignup/index';
 import { DashboardComponent } from './dashboard/index';
+import { ProviderDashboardComponent } from './provider-dashboard/index';
 import { CouponComponent } from './dashboard/coupons/index';
 import { ProfileComponent } from './dashboard/profile/index';
+import { ProviderProfileComponent } from './provider-dashboard/profile/index';
+import { ProviderInfoComponent } from './provider-dashboard/provider-info/index';
+import { CollectCouponComponent } from './provider-dashboard/collect-coupon/index';
+import { CouponCollectedComponent } from './provider-dashboard/coupon-collected/index';
+import { PaymentMethodComponent } from './provider-dashboard/payment-method/index';
 import { HelpComponent } from './page/help/index';
 import { HomeComponent } from './page/home/index';
 import { DHomeComponent } from './dashboard/home/index';
+import { ProviderHomeComponent } from './provider-dashboard/home/index';
 import { AboutComponent } from './page/about/index';
 import { PrivacyComponent } from './page/privacy/index';
 import { LocationComponent } from './dashboard/location/index';
@@ -169,5 +177,40 @@ export const routes: Routes = [
             component: PreviousCouponComponent,
         }
     	]
+    },
+    {
+      path: 'provider-dashboard', 
+      component: ProviderDashboardComponent,
+      canActivate: [ProviderLoggedInGuard],
+      children: [
+        {
+            path: '', 
+            component: ProviderHomeComponent,
+               
+        },
+        {
+            path: 'profile', 
+            component: ProviderProfileComponent,
+               
+        },
+        {
+            path: 'provider-info', 
+            component: ProviderInfoComponent,
+               
+        },
+        {
+            path: 'payment-method', 
+            component: PaymentMethodComponent,
+               
+        },
+        {
+          path: 'collect-coupon',
+          component: CollectCouponComponent,
+        },
+        {
+          path: 'coupon-collected',
+          component: CouponCollectedComponent,
+        }
+      ]
     }
 ];

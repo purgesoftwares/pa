@@ -26,15 +26,38 @@ export class PaymentMethodComponent {
 	}
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/user/current-customer?access_token=' + this.token)
+		this.http.get('http://54.161.216.233:8090/api/secured/user/current-provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => { if(data.id) {
-                  				this.model = { 	id: data.id,
-                  								email: data.mainEmail,
-                  								username: data.fullName
-                  								};
-  
+  					data => { if(data && data.id) {
+                  				this.model = { 	providerId: data.id	};
+
+
+  								this.http.get(
+  									'http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/'
+  									+data.id+'?access_token=' 
+  									+ this.token)
+					  				.map(res => res.json())
+					  				.subscribe(
+					  					data => { 
+
+					  					if(data && data.id) {
+											var providerId = this.model.providerId;
+			                  				this.model = data;
+			                  				this.model.providerId = providerId;
+			  
+			                  			} else {
+			                      			console.log(data);
+			                  			}
+			                  		},
+				  					error => { if(error.json().error) {
+													this.message = error.json().message;
+													this.mess = true;
+												}},
+				  					() => console.log("complete")
+				  				);
+
+
                   			} else {
                       			this.mess 		=	true;
                       			this.message	= 	"There is no records found.";
@@ -53,37 +76,34 @@ export class PaymentMethodComponent {
 
 	save() {
 
+		console.log(this.model);
 		this.loading = true;
-		if(this.model.password != this.model.cpassword){
-			this.mess= true;
-			this.message= 'Password and confirm password should be same!'; 
-		}
-
+		
 		let headers = new Headers();
   		headers.append('content-Type', 'application/json');
 
-		this.http.put('http://54.161.216.233:8090/api/secured/customer/update/'+this.model.id + '?access_token=' + this.token, this.model, {headers: headers})
+  		if(this.model.id){
+  			this.http.put('http://54.161.216.233:8090/api/secured/bank-detail/'
+  				+ this.model.id + '?access_token=' + this.token, this.model, {headers: headers})
 			//.map((res:Response) => res.text())
 			.subscribe(
 			    data => { 
 
 			    	if(data.status == 200) {
-			    		var datamodel = JSON.stringify(eval("(" + data.text() + ")"));
+			    		this.model = data.json();
 			    		this.toasterService.pop('success', 'Success',
-			    		 'Your account successfully updated!');
-
-			    		//this.model.password = "";
-			    		//this.model.cpassword = "";
-			    		this.loading = false;
-
-			    		//localStorage.setItem('access_token', data);
-				    	//this.router.navigate(['/login']);
-			    	} else {this.mess= true;
+			    		 'Successfully updated!');
+						this.loading = false;
+			    	} else {
+			    		this.mess= true;
 				    	this.message= 'Value is incorrect';
 				    	this.toasterService.pop('error', 'Invalid',
 			    		 this.message);
-				    	this.loading = false;}},
-			    error => {console.log(error);
+				    	this.loading = false;
+				    }
+				},
+			    error => {
+			    	console.log(error);
 				    this.mess= true;
 				    this.message= 'Some Error! Please Try After Some Time '; 
 			    	if(error.json().error) {
@@ -95,5 +115,40 @@ export class PaymentMethodComponent {
 				    this.loading = false;
 				}
 			 );
+  		}else{
+  			this.http.post('http://54.161.216.233:8090/api/secured/bank-detail/?access_token=' 
+  				+ this.token, this.model, {headers: headers})
+			//.map((res:Response) => res.text())
+			.subscribe(
+			    data => { 
+
+			    	if(data.status == 200) {
+			    		this.model = data.json();
+			    		this.toasterService.pop('success', 'Success',
+			    		 'Successfully updated!');
+						this.loading = false;
+			    	} else {
+			    		this.mess= true;
+				    	this.message= 'Value is incorrect';
+				    	this.toasterService.pop('error', 'Invalid',
+			    		 this.message);
+				    	this.loading = false;
+				    }
+				},
+			    error => {
+			    	console.log(error);
+				    this.mess= true;
+				    this.message= 'Some Error! Please Try After Some Time '; 
+			    	if(error.json().error) {
+									this.message = error.json().message;
+									this.mess = true;
+								}
+				    this.toasterService.pop('error', 'Error',
+			    		 this.message);
+				    this.loading = false;
+				}
+			 );
+  		}
+		
 	} 
 }

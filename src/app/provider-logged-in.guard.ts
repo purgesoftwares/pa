@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @Injectable()
-export class LoggedInGuard implements CanActivate {
+export class ProviderLoggedInGuard implements CanActivate {
   
   private toasterService: ToasterService;
 
@@ -14,14 +14,14 @@ export class LoggedInGuard implements CanActivate {
   }
 
   canActivate() {
-    if(this.user.isLoggedIn() && !this.user.isProviderLoggedIn()){
+    if(this.user.isProviderLoggedIn()){
       return true;
     }else{
       localStorage.removeItem('access_token');
       localStorage.removeItem('isProvider');
       this.toasterService.pop('error', 'Invalid Access',
                'There is no active Session to Access, Please Login to Access!');
-                  this.router.navigate(['/login']);
+                  this.router.navigate(['/provider-login']);
       return false;
 
     }

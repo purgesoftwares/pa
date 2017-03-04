@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from "angular2-google-maps/core";
 
-import { DHomeModule } from './home/home.module';
-import { ProfileModule } from './profile/profile.module';
+import { ProviderHomeModule } from './home/home.module';
+import { ProviderProfileModule } from './profile/profile.module';
+import { PaymentMethodModule } from './payment-method/payment-method.module';
+import { ProviderInfoModule } from './provider-info/provider-info.module';
+import { CouponCollectedModule } from './coupon-collected/coupon-collected.module';
+import { CollectCouponModule } from './collect-coupon/collect-coupon.module';
 
-import { DashboardComponent } from './dashboard.component';
+import { ProviderDashboardComponent } from './dashboard.component';
 
-import {TopNavComponent} from '../shared/index';
-import {SidebarComponent} from '../shared/index';
+import {ProviderTopNavComponent} from '../shared/index';
+import {ProviderSidebarComponent} from '../shared/index';
 
 
 @NgModule({
@@ -20,22 +24,15 @@ import {SidebarComponent} from '../shared/index';
           apiKey: "AIzaSyAGMdOZPvWC-k__DNkAk9aGkPZ8x7OIGeY",
           libraries: ["places"]
         }),
-    	DHomeModule,
-        UserModule,
-        LocationModule,
-        OrderConfirmModule,
-        TermConditionModule,
-        JoinFriendModule,
-        CouponModule,
-        ProfileModule,
-        PreviousCouponModule,
-        CouponCartModule,
-        CouponDetailsModule,
-        SendAnotherEmailModule,
-        ThankYouModule
+    	ProviderHomeModule,
+        ProviderProfileModule,
+        PaymentMethodModule,
+        ProviderInfoModule,
+        CouponCollectedModule,
+        CollectCouponModule
     ],
-    declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
-    exports: [DashboardComponent, TopNavComponent, SidebarComponent]
+    declarations: [ProviderDashboardComponent, ProviderTopNavComponent, ProviderSidebarComponent],
+    exports: [ProviderDashboardComponent, ProviderTopNavComponent, ProviderSidebarComponent]
 })
 
-export class DashboardModule { }
+export class ProviderDashboardModule { }

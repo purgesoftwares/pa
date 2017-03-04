@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 
-import { DHomeRoutes } from './home/index';
+import { ProviderHomeRoutes } from './home/index';
 
 import { ProviderDashboardComponent } from './index';
 

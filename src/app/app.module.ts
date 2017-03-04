@@ -22,6 +22,7 @@ import { ResetPasswordModule } from './reset-password/resetPassword.module';
 import { ProviderResetPasswordModule } from './provider-reset-password/providerresetPassword.module';
 
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ProviderDashboardModule } from './provider-dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { PageModule } from './page/page.module';
 import { CouponViewModule } from './dashboard/coupons/coupon-view/coupon-view.module';
@@ -34,6 +35,7 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
 import { AgmCoreModule } from "angular2-google-maps/core";
 import { UserService } from './user.service';
 import { LoggedInGuard } from './logged-in.guard';
+import { ProviderLoggedInGuard } from './provider-logged-in.guard';
 import { ExtendedHttpService } from './extended-http.service';
 
 
@@ -51,6 +53,7 @@ import { ExtendedHttpService } from './extended-http.service';
 		FormsModule,
 		ReactiveFormsModule,
 		DashboardModule,
+		ProviderDashboardModule,
 		ForgotPasswordModule,
 		ProviderForgotPasswordModule,
 		ResetPasswordModule,
@@ -66,6 +69,6 @@ import { ExtendedHttpService } from './extended-http.service';
   declarations: [AppComponent, FrontTopNavComponent, FooterComponent],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [UserService, LoggedInGuard/*, { provide: Http, useClass: ExtendedHttpService }*/]
+  providers: [UserService, LoggedInGuard, ProviderLoggedInGuard/*, { provide: Http, useClass: ExtendedHttpService }*/]
 })
 export class AppModule { }

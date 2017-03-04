@@ -4,9 +4,11 @@ import { Http, Headers } from '@angular/http';
 @Injectable()
 export class UserService {
   private loggedIn = false;
+  private isProvider = false;
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('access_token');
+    this.isProvider = !!localStorage.getItem('isProvider');
   }
 
   login(email, password) {
@@ -41,5 +43,8 @@ export class UserService {
 
   isLoggedIn() {
     return this.loggedIn;
+  }
+  isProviderLoggedIn() {
+    return (this.loggedIn && this.isProvider);
   }
 }

@@ -117,10 +117,10 @@ export class ProviderSignupComponent {
 		//this.loading = true;
 		console.log(this.model);
 
-		if(this.model.password != this.model.cpassword){
+		if(this.model.password != this.model.confirmPassword){
 			this.toasterService.pop('error', 'Mismatch',
 			    		 "Password and Confirm Password did not match.");
-			$("cpassword").focus();
+			$("confirmPassword").focus();
 		}
 		this.http.post('http://54.161.216.233:8090/api/provider/signup', this.model)
 			//.map((res:Response) => res.text())
@@ -134,7 +134,7 @@ export class ProviderSignupComponent {
 			    		this.toasterService.pop('success', 'Success',
 			    		 'Your account successfully created! Login to access');
 			    		//localStorage.setItem('access_token', data);
-				    	//this.router.navigate(['/providerlogin']);
+				    	this.router.navigate(['/provider-login']);
 			    	} else {this.mess= true;
 				    	this.message= 'Value is incorrect';
 				    	this.toasterService.pop('error', 'Invalid',
@@ -144,9 +144,11 @@ export class ProviderSignupComponent {
 				},
 
 			    error => {console.log(error);
-
+			    	error = error.json();
 				    this.mess= true;
 				    this.message= 'Some Error! Please Try After Some Time '; 
+				    if(error.error)
+				    this.message= error.error; 
 				    this.toasterService.pop('error', 'Error',
 			    		 this.message);
 				    this.loading = false;

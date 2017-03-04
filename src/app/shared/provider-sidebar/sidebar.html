@@ -1,0 +1,36 @@
+<!-- <button class="btn btn-default" id="toggle-sidebar" type="button" (click)="eventCalled()">
+    &#9776;
+</button> -->
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ul class="list-group">
+        <!-- <a routerLink="/dashboard/home" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i> Dashboard
+        </a>  -->
+        <a [routerLink]="['collect-coupon']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-tag"></i> Collect Coupon
+        </a>
+        <a [routerLink]="['profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-user"></i> My Profile
+        </a>
+        <a [routerLink]="['products']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-product-hunt"></i> Manage Products 
+        </a>
+        <a [routerLink]="['opening-time']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-calendar-check-o"></i> Edit Opening Time
+        </a>
+
+        <a [routerLink]="['provider-info']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-info"></i> &nbsp; Edit Provider Info
+        </a>
+
+        <a [routerLink]="['payment-method']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-paypal"></i> Edit Payment Method
+        </a>
+        <a [routerLink]="['collected-coupons']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-tag"></i> Collected Coupons
+        </a>
+        <a *ngIf="loggedIn" (click) = "logout()" href="javascript:void(0);" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-sign-out"></i> Logout
+        </a>
+    </ul>
+</nav>

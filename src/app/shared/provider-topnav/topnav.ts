@@ -5,20 +5,17 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @Component({
     moduleId: module.id,
-    selector: 'top-nav',
+    selector: 'provider-top-nav',
     templateUrl: 'topnav.html',
 })
 
-export class TopNavComponent {
+export class ProviderTopNavComponent {
 
 	loggedIn = false;
-
-	loggedInAsProvider = false;
 
 	private toasterService: ToasterService;
 	constructor(private router: Router, toasterService: ToasterService) {
 		this.isLoggedIn();
-		this.isLoggedInAsProvider();
 		this.toasterService = toasterService;
 	}
 
@@ -44,11 +41,6 @@ export class TopNavComponent {
 	    this.loggedIn = (token == null || token == "")?false:true;
 	}
 
-	isLoggedInAsProvider() {
-		var token = this.getToken();
-	    this.loggedInAsProvider = ((token == null || token == "") && localStorage.getItem('isProvider'))?false:true;
-	}
-
 	rtl(): void {
 		//var body: any = $('body');
 		//body.toggleClass('rtl');
@@ -63,7 +55,6 @@ export class TopNavComponent {
 	
 	logout() {
 		localStorage.removeItem('access_token');
-		localStorage.removeItem('isProvider');
 		window.location.href = "";
 		this.router.navigate(['/']);
 	}

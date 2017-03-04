@@ -5,7 +5,8 @@
         <li *ngIf="loggedIn" (click) = "logout()" role="presentation"><a href="javascript:void(0);" >Logout</a></li>
         <li *ngIf="!loggedIn" role="presentation"><a [routerLink]="['/login']" >Login</a></li>
         <li *ngIf="!loggedIn" role="presentation"><a [routerLink]="['/signup']" >Signup</a></li>
-        <li *ngIf="loggedIn" role="presentation"><a [routerLink]="['/dashboard']" >Account</a></li>
+        <li *ngIf="loggedIn && !loggedInAsProvider" role="presentation"><a [routerLink]="['/dashboard']" >Account</a></li>
+        <li *ngIf="loggedIn && loggedInAsProvider" role="presentation"><a [routerLink]="['/provider-dashboard']" >Account</a></li>
         <li role="presentation" ><a [routerLink]="['/help']" >Help</a></li>
       </ul>
     </nav>
