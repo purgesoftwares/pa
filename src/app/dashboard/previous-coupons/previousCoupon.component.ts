@@ -2,6 +2,7 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
 	moduleId: module.id,
@@ -33,6 +34,13 @@ export class PreviousCouponComponent {
 		
 		this.http.get('http://54.161.216.233:8090/api/secured/user/current-customer?access_token=' + this.token)
   				.map(res => res.json())
+  				.catch(e => {
+					console.log(e);
+		            if (e.status === 401 || e.status === 0) {
+		                return Observable.throw('Unauthorized');
+		            }
+		            // do any other checking for statuses here
+		        })
   				.subscribe(
   					data => { if(data.addressId || (this.latitude && this.latitude != "" && this.latitude != null)) {
                   				
@@ -42,7 +50,18 @@ export class PreviousCouponComponent {
 			    		 'Set Location first to check nearby Coupons!');
 			    		 		this.router.navigate(['/dashboard/location']);
                   			}},
-  					error => { if(error.json().error) {
+  					error => { 
+
+  					if(error == "Unauthorized"){
+  						
+						this.toasterService.pop('error', 'Unauthorized',
+						 "Session expired or invalid access.");
+
+						this.router.navigate(['/login']);
+            			return false;
+					}
+
+					if(error.json().error) {
 									this.message = error.json().message;
 									this.mess = true;
 								}},

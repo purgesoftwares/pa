@@ -2,8 +2,10 @@ import {Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import {ToasterModule, ToasterService} from 'angular2-toaster';
+import { ToasterModule, ToasterService } from 'angular2-toaster';
+import { Observable } from 'rxjs/Rx';
 import * as $ from 'jquery';
+
 //declare var $:JQueryStatic;
 
 declare const PAYPAL: any;
@@ -67,6 +69,13 @@ export class TermConditionComponent {
 
 	this.http.get('http://54.161.216.233:8090/api/secured/user/current-customer?access_token=' + this.token)
   				.map(res => res.json())
+  				.catch(e => {
+					console.log(e);
+		            if (e.status === 401 || e.status === 0) {
+		                return Observable.throw('Unauthorized');
+		            }
+		            // do any other checking for statuses here
+		        })
   				.subscribe(
   					data => {
   						console.log(data); 
@@ -81,7 +90,15 @@ export class TermConditionComponent {
 			    		 		'No Records');
 			    		 		this.router.navigate(['/']);
                   			}},
-  					error => { if(error.json().error) {
+  					error => { 
+  						if(error == "Unauthorized"){
+							this.toasterService.pop('error', 'Unauthorized',
+							 "Session expired or invalid access.");
+							this.router.navigate(['/login']);
+	            			return false;
+						}
+
+  						if(error.json().error) {
 									this.message = error.json().message;
 									this.mess = true;
 										this.toasterService.pop('error', 'Invalid Request',
@@ -101,25 +118,30 @@ export class TermConditionComponent {
                   				this.package = data;
                   				this.purchasedPackage.couponNumber = this.package.couponNumber;
                   				this.purchasedPackage.couponPackage = this.package;
-                  				this.purchasedPackage.joinedFriends = JSON.parse(localStorage.getItem("joinedfriends"));
+
+                  				var joinedfriends = JSON.parse(localStorage.getItem("joinedfriends"));
+                  				var newJoinedFriends = [];
+                  			var that1 = this;
+                  				joinedfriends.forEach(function(jv, j){
+                  						jv.couponNumber = that1.package.couponNumber;
+	                  					newJoinedFriends.push(jv);
+		                  		});
+                  				this.purchasedPackage.joinedFriends = newJoinedFriends;
                   				this.purchasedPackage.createdAt = new Date();
                   				this.package.quantity = quantity;
                   				this.package.totalPrice = this.package.quantity*(parseFloat(this.package.price));
                   				console.log(this.package);
                   				console.log(this.package.totalPrice);
-/*  								this.purchasedPackage = {
+								/*  this.purchasedPackage = {
   									"couponNumber": this.package.couponNumber,
   									"couponPackage": this.package,
   									"joinedFriends": JSON.parse(localStorage.getItem("joinedfriends")),
   									"customerId": "",
   									"custome": null,
   									"createdAt": new Date()
-  								};
-
-
-*/
-
-						    var that = this;
+  								}; */
+							var that = this;
+						    
 						    
 						    $.getScript( "https://www.paypalobjects.com/api/checkout.js", function( data, textStatus, jqxhr ) {
 							/*  console.log( data ); // Data returned
@@ -145,6 +167,7 @@ export class TermConditionComponent {
 							            var client = this.props.client;
 							            console.log(that.accepted);
 							            console.log(that.model.totalPrice);
+							            console.log(this.package);
 
 							            if(that.accepted){
 							            	alert("Please accept Terms and Conditions before payment.");

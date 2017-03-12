@@ -9,6 +9,9 @@ import { PaymentMethodModule } from './payment-method/payment-method.module';
 import { ProviderInfoModule } from './provider-info/provider-info.module';
 import { CouponCollectedModule } from './coupon-collected/coupon-collected.module';
 import { CollectCouponModule } from './collect-coupon/collect-coupon.module';
+import { ProductModule } from './products/product.module';
+import { CollectedCouponModule } from './collected-coupons/collected-coupon.module';
+import { OpeningDayModule } from './opening-days/opening-day.module';
 
 import { ProviderDashboardComponent } from './dashboard.component';
 
@@ -29,7 +32,10 @@ import {ProviderSidebarComponent} from '../shared/index';
         PaymentMethodModule,
         ProviderInfoModule,
         CouponCollectedModule,
-        CollectCouponModule
+        CollectCouponModule,
+        ProductModule,
+        CollectedCouponModule,
+        OpeningDayModule
     ],
     declarations: [ProviderDashboardComponent, ProviderTopNavComponent, ProviderSidebarComponent],
     exports: [ProviderDashboardComponent, ProviderTopNavComponent, ProviderSidebarComponent]

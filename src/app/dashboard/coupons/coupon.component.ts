@@ -1,7 +1,8 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
 	moduleId: module.id,
@@ -25,8 +26,14 @@ export class CouponComponent {
 	private toasterService: ToasterService;
 
 	constructor( private http : Http,
-				private router: Router, toasterService: ToasterService ) {
+				private router: Router, 
+				toasterService: ToasterService, 
+				private route: ActivatedRoute) {
 		this.toasterService = toasterService;
+		console.log(route);
+		console.log(router.url);
+		console.log(route.snapshot.url);
+		console.log(route.snapshot.url[0].path);
 	}
 
 	ngOnInit() {
@@ -40,6 +47,13 @@ export class CouponComponent {
 		console.log(this.isJoinedFriends);
 		this.http.get('http://54.161.216.233:8090/api/secured/user/current-customer?access_token=' + this.token)
   				.map(res => res.json())
+  				.catch(e => {
+					console.log(e);
+		            if (e.status === 401 || e.status === 0) {
+		                return Observable.throw('Unauthorized');
+		            }
+		            // do any other checking for statuses here
+		        })
   				.subscribe(
   					data => { if(data.addressId || (this.latitude && this.latitude != "" && this.latitude != null)) {
                   				
@@ -49,7 +63,16 @@ export class CouponComponent {
 			    		 'Set Location first to check nearby Coupons!');
 			    		 		this.router.navigate(['/dashboard/location']);
                   			}},
-  					error => { if(error.json().error) {
+  					error => { 
+
+  					if(error == "Unauthorized"){
+						this.toasterService.pop('error', 'Unauthorized',
+						 "Session expired or invalid access.");
+						this.router.navigate(['/login']);
+            			return false;
+					}
+
+  						if(error.json().error) {
 									this.message = error.json().message;
 									this.mess = true;
 								}},
@@ -76,15 +99,16 @@ export class CouponComponent {
 
 	                  						thisObj.joinedFriends.forEach(function(jv, j){
 	                  					
-		                  						if(value.couponNumber
-		                  							== parseInt(jv.couponNumber)){
+		                  						//if(value.couponNumber
+		                  						//	== parseInt(jv.couponNumber)){
 		                  							count++;
-		                  						}
+		                  						//}
 		                  					});
-	                  					var coupon = thisObj.coupons[index];
+	                  					
+                  					}
+                  					var coupon = thisObj.coupons[index];
 	                  					coupon["count"] = count;
                   						thisObj.coupons[index] = coupon;
-                  					}
                   					});
                   				}
   								//this = thisObj;
@@ -110,9 +134,13 @@ export class CouponComponent {
 		this.router.navigate(['dashboard/coupon-cart'], { queryParams: { id:id}});
 	}
 
-	joinFriend(id, couponNumber) {
+	/*joinFriend(id, couponNumber) {
 		console.log(id);
 		this.router.navigate(['dashboard/join-friend'], { queryParams: { Id:id,CouponNumber:couponNumber}});
+	}*/
+	joinFriend() {
+		
+		this.router.navigate(['dashboard/join-friend']);
 	}
 
 	search(terms: string) {

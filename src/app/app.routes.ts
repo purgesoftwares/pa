@@ -47,6 +47,10 @@ import { CouponCartComponent } from './dashboard/coupons/coupon-cart/index';
 import { CouponDetailsComponent } from './dashboard/coupons/coupon-details/index';
 import { SendAnotherEmailComponent } from './dashboard/coupons/send-another-email/index';
 import { ThankYouComponent } from './dashboard/coupons/thank-you/index';
+import { ProductComponent } from './provider-dashboard/products/index';
+import { CollectedCouponComponent } from './provider-dashboard/collected-coupons/index';
+import { OpeningDayComponent } from './provider-dashboard/opening-days/index';
+import { AddProductComponent } from './provider-dashboard/products/add-product/index';
 
 export const routes: Routes = [
 	
@@ -210,6 +214,22 @@ export const routes: Routes = [
         {
           path: 'coupon-collected',
           component: CouponCollectedComponent,
+        },
+        {
+          path: 'products',
+          component: ProductComponent,
+        },
+        {
+          path: 'add-product',
+          component: AddProductComponent,
+        },
+        {
+          path: 'collected-coupons',
+          component: CollectedCouponComponent,
+        },
+        {
+          path: 'opening-days',
+          component: OpeningDayComponent,
         }
       ]
     }

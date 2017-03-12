@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as $ from 'jquery';
 
 /**
 *	This class represents the lazy loaded DashboardComponent.
@@ -10,4 +11,14 @@ import { Component } from '@angular/core';
 	templateUrl: 'dashboard.component.html'
 })
 
-export class DashboardComponent { }
+export class DashboardComponent {
+
+constructor( ) {
+		
+		console.log("sadasds");
+		$("nav").hide();
+		$("#mini-submenu-toggle-button").show();
+
+	}
+
+}

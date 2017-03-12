@@ -15,10 +15,10 @@
           
             <form name="form" (ngSubmit)="f.form.valid && savefriend()" #f="ngForm" novalidate>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="couponno">Coupon No</label>
                     <input type="text" class="form-control" name="couponno" [(ngModel)]="model.couponNumber" #couponNumber="ngModel"  readonly />
-                </div>
+                </div> -->
                 
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
                     <label for="name">Name</label>

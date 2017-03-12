@@ -27,10 +27,10 @@ export class JoinFriendComponent {
 	}
 
 	ngOnInit() {
-		this.route.queryParams.subscribe(data => {
+		/*this.route.queryParams.subscribe(data => {
 			this.id =  data['Id'],
 			this.model.couponNumber = data['CouponNumber']
-		});
+		});*/
 
 	}
 

@@ -12,9 +12,6 @@ import * as $ from 'jquery';
 *	This class represents the lazy loaded SignupComponent.
 */
 
-declare const FB:any;
-
-declare const gapi: any;
 
 @Component({
 	moduleId: module.id,

@@ -1,8 +1,8 @@
 <div class="row">
-	<div class="col-lg-3 ">
+	<div class="hide" id="dashboard-sidebar" >
 		<sidebar-cmp></sidebar-cmp>
 	</div>
-	<div class="col-lg-9">
+	<div class="col-lg-12"  id="dashboard-container" >
 		<section class="main-container" [ngClass]="{sidebarPushRight: isActive}">	
 			<router-outlet></router-outlet>
 		</section>
