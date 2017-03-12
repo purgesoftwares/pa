@@ -5,7 +5,8 @@ import { NgZone, OnInit, ViewChild } from '@angular/core';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin'
 import * as $ from 'jquery';
 
 @Component({

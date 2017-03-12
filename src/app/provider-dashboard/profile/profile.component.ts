@@ -7,7 +7,8 @@ import { MapsAPILoader } from 'angular2-google-maps/core';
 import { SebmGoogleMap } from 'angular2-google-maps/core';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin'
 import * as $ from 'jquery';
 
 @Component({

@@ -2,7 +2,8 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin'
 
 @Component({
 	moduleId: module.id,
