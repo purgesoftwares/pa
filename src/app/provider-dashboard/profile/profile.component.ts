@@ -54,7 +54,7 @@ export class ProviderProfileComponent {
 	    this.searchControl = new FormControl();
 
 	    //set current position
-	    this.setCurrentPosition();
+	    //this.setCurrentPosition();
 
 	    //load Places Autocomplete
 	    this.mapsAPILoader.load().then(() => {
@@ -108,10 +108,19 @@ export class ProviderProfileComponent {
 			          				this.model.country = data.country;
 			          				this.model.city = data.city;
 			          				this.model.address = data.address1;
+			          				this.model.location = data.location;
+			          				
+			          				this.latitude = data.location.x;
+						            this.longitude = data.location.y;
+						            this.zoom = 12;
+
+						            if(!this.latitude)
+						            	this.setCurrentPosition();
 									this.model.providerName = this.model.provider_name;
 			          			} else {
 			              			this.mess 		=	true;
 			              			this.message	= 	"There is no records found.";
+			              			this.setCurrentPosition();
 			          			}
 			          		},
 							error => { if(error.json().error) {
@@ -172,6 +181,9 @@ export class ProviderProfileComponent {
 			    		 this.message);
 			return false
 		}
+
+		this.model.location = {x: this.latitude, y: this.longitude,
+							 coordinates: [this.latitude, this.longitude], type: "Point"};
 
 		let headers = new Headers();
   		headers.append('content-Type', 'application/json');

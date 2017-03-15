@@ -119,6 +119,11 @@ export class ProviderSignupComponent {
 			    		 "Password and Confirm Password did not match.");
 			$("confirmPassword").focus();
 		}
+
+		this.model.location = {x: this.latitude, y: this.longitude,
+							 coordinates: [this.latitude, this.longitude], type: "Point"};
+
+				 
 		this.http.post('http://54.161.216.233:8090/api/provider/signup', this.model)
 			//.map((res:Response) => res.text())
 			.subscribe(
