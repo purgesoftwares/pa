@@ -121,11 +121,14 @@ export class TermConditionComponent {
 
                   				var joinedfriends = JSON.parse(localStorage.getItem("joinedfriends"));
                   				var newJoinedFriends = [];
-                  			var that1 = this;
-                  				joinedfriends.forEach(function(jv, j){
+                  				var that1 = this;
+                  				if(joinedfriends && joinedfriends!=null){
+                  					joinedfriends.forEach(function(jv, j){
                   						jv.couponNumber = that1.package.couponNumber;
 	                  					newJoinedFriends.push(jv);
-		                  		});
+		                  			});	
+                  				}
+                  				
                   				this.purchasedPackage.joinedFriends = newJoinedFriends;
                   				this.purchasedPackage.createdAt = new Date();
                   				this.package.quantity = quantity;

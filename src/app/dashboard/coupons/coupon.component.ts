@@ -2,6 +2,7 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
+import { UserService } from './../../user.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin'
 
@@ -29,7 +30,7 @@ export class CouponComponent {
 	constructor( private http : Http,
 				private router: Router, 
 				toasterService: ToasterService, 
-				private route: ActivatedRoute) {
+				private route: ActivatedRoute, private userService: UserService) {
 		this.toasterService = toasterService;
 		console.log(route);
 		console.log(router.url);
@@ -56,7 +57,11 @@ export class CouponComponent {
 		            // do any other checking for statuses here
 		        })
   				.subscribe(
-  					data => { if(data.addressId || (this.latitude && this.latitude != "" && this.latitude != null)) {
+  					data => { if((data.addressId && this.userService.isLoggedIn()) 
+  						|| (!this.userService.isLoggedIn() 
+  							&& this.latitude 
+  							&& this.latitude != "" 
+  							&& this.latitude != null)) {
                   				
                   			} else {
                       			

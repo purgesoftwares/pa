@@ -1,7 +1,9 @@
 <div class="row">
       <h1>Set your location</h1>
-      <button class="pull-right btn btn-primary" [disabled]="selecting" (click) = "save()" >Save</button>
+      <button class="pull-right btn btn-primary" [disabled]="selecting" (click) = "save()" style="margin-bottom: 5px;" >Save</button>
       <div class="form-group">
+      	<input type="hidden" name="city">
+      	<input type="hidden" name="country">
         <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
       </div>
       <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
