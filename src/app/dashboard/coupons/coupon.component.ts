@@ -130,6 +130,34 @@ export class CouponComponent {
   				);
 	}
 
+	getDigits(num){
+
+		var output = [],
+		    sNumber = num.toString();
+
+		for (var i = 0, len = sNumber.length; i < len; i += 1) {
+		    output.push(+sNumber.charAt(i));
+		}
+
+		return output;
+	}
+
+	getLastThree(digits){
+		var output = "";
+
+		for (var i = digits.length - 1; i >= 3; i--) {
+			output += digits[i].toString();
+		}
+		return output;
+	}
+	hash(num:number){
+
+		//String.fromCharCode(+ n);
+		if(!num)
+      		return "";
+
+		return "TOUR"+this.getLastThree(this.getDigits(num));
+	}
 	view(id) {
 		
 		this.router.navigate(['/dashboard/coupon-package-view/'],{ queryParams: { id:id}})

@@ -84,6 +84,8 @@ googlesignup() {
 		this.loading = true;
 		this.model = this.guser;
 		
+		this.model.email = this.model.email.toLowerCase();
+
 		this.http.post('http://54.161.216.233:8090/api/public/customer/googlesignup', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
@@ -156,6 +158,8 @@ googlesignup() {
 		this.loading = true;
 		this.model = this.user;
 		
+		this.model.email = this.model.email.toLowerCase();
+
 		this.http.post('http://54.161.216.233:8090/api/public/customer/fbsignup', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
@@ -208,6 +212,8 @@ googlesignup() {
 	signup() {
 
 		this.loading = true;
+		
+		this.model.email = this.model.email.toLowerCase();
 		
 		this.http.post('http://54.161.216.233:8090/api/public/customer/signup', this.model)
 			//.map((res:Response) => res.text())

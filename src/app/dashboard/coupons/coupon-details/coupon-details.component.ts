@@ -67,5 +67,39 @@ export class CouponDetailsComponent {
 
   	}
 
+  direction(id) {
+    
+    this.router.navigate(['/dashboard/direction/'],{ queryParams: { id:id}})
+  }
+
+  getDigits(num){
+
+    var output = [],
+        sNumber = num.toString();
+
+    for (var i = 0, len = sNumber.length; i < len; i += 1) {
+        output.push(+sNumber.charAt(i));
+    }
+
+    return output;
+  }
+
+  getLastThree(digits){
+    var output = "";
+
+    for (var i = digits.length - 1; i >= 3; i--) {
+      output += digits[i].toString();
+    }
+    return output;
+  }
+  hash(num:number){
+
+    //String.fromCharCode(+ n);
+    if(!num)
+      return "";
+
+    return "TOUR"+this.getLastThree(this.getDigits(num));
+  }
+
   	
 }

@@ -85,7 +85,7 @@ googlesignup() {
 
 		this.loading = true;
 		this.model = this.guser;
-		
+		this.model.email = this.model.email.toLowerCase();
 		this.http.post('http://54.161.216.233:8090/api/public/customer/googlesignup', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
@@ -185,6 +185,7 @@ googlesignup() {
 		this.loading = true;
 		this.model = this.user;
 		
+		this.model.email = this.model.email.toLowerCase();
 		this.http.post('http://54.161.216.233:8090/api/public/customer/fbsignup', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
@@ -237,12 +238,13 @@ googlesignup() {
 	login() {
 
 		this.loading = true;
+		this.model.username = this.model.username.toLowerCase();
 		this.http.post('http://54.161.216.233:8090/api/oauth/token/client', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
 			    data => { 
 			    	//console.log(data);
-			    	if(data) {
+			    	if(data ) {
 			    		localStorage.setItem('access_token', data);
 			    		this.toasterService.pop('success', 'Success',
 			    		 'Logged in successfully!');

@@ -123,7 +123,9 @@ export class ProviderSignupComponent {
 		this.model.location = {x: this.latitude, y: this.longitude,
 							 coordinates: [this.latitude, this.longitude], type: "Point"};
 
-				 
+		this.model.mainEmail = this.model.mainEmail.toLowerCase();
+		this.model.secondaryEmail = this.model.secondaryEmail.toLowerCase();
+		
 		this.http.post('http://54.161.216.233:8090/api/provider/signup', this.model)
 			//.map((res:Response) => res.text())
 			.subscribe(

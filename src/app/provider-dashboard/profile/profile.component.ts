@@ -188,6 +188,9 @@ export class ProviderProfileComponent {
 		let headers = new Headers();
   		headers.append('content-Type', 'application/json');
 
+  		this.model.mainEmail 		= this.model.mainEmail.toLowerCase();
+  		this.model.secondaryEmail 	= this.model.secondaryEmail.toLowerCase();
+
 		this.http.put('http://54.161.216.233:8090/api/secured/provider/signup/'
 			+ this.model.id + '?access_token=' + this.token, this.model, {headers: headers})
 			//.map((res:Response) => res.text())

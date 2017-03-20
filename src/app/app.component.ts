@@ -1,5 +1,6 @@
 import {Component, ViewContainerRef, Optional} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -21,6 +22,9 @@ export class AppComponent {
 
   constructor(private _dialog: MdDialog, private _snackbar: MdSnackBar) {
     // Update the value for the progress-bar on an interval.
+    $("nav").show();
+    $("#mini-submenu-toggle-button").hide();
+
     setInterval(() => {
       this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
     }, 200);

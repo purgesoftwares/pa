@@ -26,4 +26,33 @@ export class CouponPackageViewComponent {
   					() => console.log("complete")
   				);
   	}
+
+  	getDigits(num){
+
+		var output = [],
+		    sNumber = num.toString();
+
+		for (var i = 0, len = sNumber.length; i < len; i += 1) {
+		    output.push(+sNumber.charAt(i));
+		}
+
+		return output;
+	}
+
+	getLastThree(digits){
+		var output = "";
+
+		for (var i = digits.length - 1; i >= 3; i--) {
+			output += digits[i].toString();
+		}
+		return output;
+	}
+	hash(num:number){
+
+	if(!num)
+      	return "";
+
+		return "TOUR"+this.getLastThree(this.getDigits(num));
+	}
+
 }

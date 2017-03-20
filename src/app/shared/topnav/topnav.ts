@@ -51,7 +51,7 @@ export class TopNavComponent {
 
 	isLoggedInAsProvider() {
 		var token = this.getToken();
-	    this.loggedInAsProvider = ((token == null || token == "") && localStorage.getItem('isProvider'))?false:true;
+	    this.loggedInAsProvider = (!(token == null || token == "") && localStorage.getItem('isProvider'))?true:false;
 	}
 
 	rtl(): void {

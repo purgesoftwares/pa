@@ -26,6 +26,7 @@ import { ProviderDashboardModule } from './provider-dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { PageModule } from './page/page.module';
 import { CouponViewModule } from './dashboard/coupons/coupon-view/coupon-view.module';
+import { ContactUsModule } from './contact-us/contact-us.module';
 
 import {FrontTopNavComponent} from './shared/index';
 import {FooterComponent} from './shared/index';
@@ -61,6 +62,7 @@ import { ExtendedHttpService } from './extended-http.service';
 		PageModule,
 		CouponViewModule,
 		SignupModule,
+		ContactUsModule,
 		ProviderSignupModule,
 		SharedModule.forRoot(),
 		MaterialModule.forRoot(),

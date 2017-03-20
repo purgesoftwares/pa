@@ -51,6 +51,8 @@ import { ProductComponent } from './provider-dashboard/products/index';
 import { CollectedCouponComponent } from './provider-dashboard/collected-coupons/index';
 import { OpeningDayComponent } from './provider-dashboard/opening-days/index';
 import { AddProductComponent } from './provider-dashboard/products/add-product/index';
+import { DirectionComponent } from './dashboard/direction/index';
+import { ContactUsComponent } from './contact-us/index';
 
 export const routes: Routes = [
 	
@@ -59,8 +61,12 @@ export const routes: Routes = [
         component: SignupComponent
     },
     {
-    	path: 'provider-signup',	
-    	component: ProviderSignupComponent
+      path: 'provider-signup',  
+      component: ProviderSignupComponent
+    },
+    {
+    	path: 'contact-us',	
+    	component: ContactUsComponent
   	},
     {
       path: 'login',  
@@ -167,6 +173,10 @@ export const routes: Routes = [
         {
             path: 'coupon-view', 
             component: CouponViewComponent,
+        },
+        {
+            path: 'direction', 
+            component: DirectionComponent,
         },
         {
             path: 'terms-conditions', 

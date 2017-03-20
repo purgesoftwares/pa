@@ -101,6 +101,34 @@ export class PreviousCouponComponent {
 		this.router.navigate(['/dashboard/coupon-details/'],{ queryParams: { id:id}})
 	}
 
+	getDigits(num){
+
+		var output = [],
+		    sNumber = num.toString();
+
+		for (var i = 0, len = sNumber.length; i < len; i += 1) {
+		    output.push(+sNumber.charAt(i));
+		}
+
+		return output;
+	}
+
+	getLastThree(digits){
+		var output = "";
+
+		for (var i = digits.length - 1; i >= 3; i--) {
+			output += digits[i].toString();
+		}
+		return output;
+	}
+	hash(num:number){
+
+	if(!num)
+      	return "";
+
+		return "TOUR"+this.getLastThree(this.getDigits(num));
+	}
+
 	/*search(terms: string) {
 		if(terms) {
 			this.coupons = this.coupons.filter(item => item.couponNumber.startsWith(terms));

@@ -14,7 +14,7 @@
                     
                     <tr>
                         <td>Coupon Number :</td>
-                        <td>{{ model.couponNumber }}</td>
+                        <td>{{ hash(model.couponNumber) }}</td>
                     </tr>
                     <tr *ngIf="model.couponPackage" >
                         <td>Price :</td>
@@ -51,8 +51,14 @@
                                 <tr>
                                     <td>{{ coupon.couponCode }}</td>
                                     <td>{{ coupon.provider.provider_name }}</td>
-                                    <td>{{ coupon.address.address1 }} {{coupon.address.address2}} {{coupon.address.city}} {{coupon.address.postalCode}} {{coupon.address.country}}</td>
-                                    <td><i class="fa fa-exchange" aria-hidden="true"></i></td>
+                                    <td>{{ coupon.address.address1 }} {{coupon.address.address2}} {{coupon.address.city}} {{coupon.address.postalCode}} {{coupon.address.country}}
+                                    </td>
+
+                                    <td>
+                                        <a (click) = direction(coupon.providerId) >
+                                            <i class="fa fa-exchange" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody> 
                         </table>

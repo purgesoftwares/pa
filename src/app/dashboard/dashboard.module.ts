@@ -19,6 +19,7 @@ import { CouponCartModule } from './coupons/coupon-cart/coupon-cart.module';
 import { CouponDetailsModule } from './coupons/coupon-details/coupon-details.module';
 import { SendAnotherEmailModule } from './coupons/send-another-email/send-another-email.module';
 import { ThankYouModule } from './coupons/thank-you/thank-you.module';
+import { DirectionModule } from './direction/direction.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -46,7 +47,8 @@ import {SidebarComponent} from '../shared/index';
         CouponCartModule,
         CouponDetailsModule,
         SendAnotherEmailModule,
-        ThankYouModule
+        ThankYouModule,
+        DirectionModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

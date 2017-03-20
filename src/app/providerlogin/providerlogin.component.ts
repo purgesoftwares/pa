@@ -48,12 +48,13 @@ export class ProviderLoginComponent {
 	login() {
 
 		this.loading = true;
+		this.model.username = this.model.username.toLowerCase();
 		this.http.post('http://54.161.216.233:8090/api/oauth/token/provider', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
 			    data => { 
-			    	//console.log(data);
-			    	if(data) {
+			    	console.log(data);
+			    	if(data && data!="") {
 			    		localStorage.setItem('access_token', data);
 			    		localStorage.setItem('isProvider', "true");
 			    		this.toasterService.pop('success', 'Success',
@@ -62,7 +63,7 @@ export class ProviderLoginComponent {
 				    		window.location.href = "/provider-dashboard";
 				    		this.router.navigate(['/provider-dashboard']);
 				    	}, 300);
-
+ 
 			    		
 			    	} else {this.mess= true;
 				    	this.message= 'Username Password is incorrect';

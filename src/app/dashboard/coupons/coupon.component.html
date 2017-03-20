@@ -38,7 +38,7 @@
                  <tbody *ngFor="let coupon of coupons">
                     <tr (click) = "view(coupon.id)" >
                         
-                        <td >{{ coupon.couponNumber }}</td>
+                        <td >{{ hash(coupon.couponNumber) }}</td>
                         <td>{{ coupon.price }}</td>
                         <td>{{ coupon.radius }}</td>
                         <td>{{ coupon.endTime | date}}</td>
