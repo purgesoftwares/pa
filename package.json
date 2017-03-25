@@ -14,10 +14,10 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "2.0.0",
+    "@angular/common": "2.2.0",
     "@angular/compiler": "2.0.0",
-    "@angular/core": "2.0.0",
-    "@angular/forms": "2.0.0",
+    "@angular/core": "2.2.0",
+    "@angular/forms": "2.2.0",
     "@angular/http": "2.0.0",
     "@angular/material": "2.0.0-alpha.10",
     "@angular/platform-browser": "2.0.0",
