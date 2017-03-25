@@ -20,6 +20,8 @@ import { CouponDetailsModule } from './coupons/coupon-details/coupon-details.mod
 import { SendAnotherEmailModule } from './coupons/send-another-email/send-another-email.module';
 import { ThankYouModule } from './coupons/thank-you/thank-you.module';
 import { DirectionModule } from './direction/direction.module';
+import { FeedbackModule } from './feedback/feedback.module';
+import { QrcodeModule } from './qrcode/qrcode.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -48,7 +50,9 @@ import {SidebarComponent} from '../shared/index';
         CouponDetailsModule,
         SendAnotherEmailModule,
         ThankYouModule,
-        DirectionModule
+        DirectionModule,
+        FeedbackModule,
+        QrcodeModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

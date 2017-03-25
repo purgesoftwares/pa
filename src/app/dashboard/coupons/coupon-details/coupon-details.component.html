@@ -24,13 +24,13 @@
                         <td>Radius :</td>
                         <td>{{ model.couponPackage.radius }}</td>
                     </tr>
-                    <tr *ngIf="model.couponPackage" >                        
+                    <tr *ngIf="model.startTime" >                        
                         <td>Start Date :</td>
-                        <td>{{ model.couponPackage.startTime | date }}</td>
+                        <td>{{ model.startTime | date }}</td>
                     </tr>
-                    <tr *ngIf="model.couponPackage" >                        
+                    <tr *ngIf="model.startTime" >                        
                         <td>Expiry Date :</td>
-                        <td>{{ model.couponPackage.endTime | date }}</td>
+                        <td>{{ model.endTime | date }}</td>
                     </tr>
                     <tr *ngIf="coupons!=0">                        
                         <td><h3>Coupons :</h3></td>
@@ -45,18 +45,24 @@
                                    <th>Provider Name </th>
                                    <th>Coupon Address </th>
                                    <th> Direction </th>
+                                   <th> QR Code </th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let coupon of coupons">
                                 <tr>
                                     <td>{{ coupon.couponCode }}</td>
-                                    <td>{{ coupon.provider.provider_name }}</td>
-                                    <td>{{ coupon.address.address1 }} {{coupon.address.address2}} {{coupon.address.city}} {{coupon.address.postalCode}} {{coupon.address.country}}
+                                    <td>{{ coupon.provider?.provider_name }}</td>
+                                    <td>{{ coupon.address?.address1 }} {{coupon.address?.address2}} {{coupon.address?.city}} {{coupon.address?.postalCode}} {{coupon.address?.country}}
                                     </td>
 
                                     <td>
                                         <a (click) = direction(coupon.providerId) >
                                             <i class="fa fa-exchange" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a (click) = qrcode(coupon.couponCode) class="btn btn-default" >
+                                            QR Code
                                         </a>
                                     </td>
                                 </tr>

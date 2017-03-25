@@ -31,26 +31,30 @@ export class CouponDetailsComponent {
   				.map(res => res.json())
   				.subscribe(
 
-  					data => {console.log(data); this.customer 	= data },
+  					data => {console.log(data); this.customer 	= data;
+
+                this.http.get('http://54.161.216.233:8090/api/secured/purchased-package/'
+                      + this.model.id +'?access_token=' + this.token)
+                        .map(res => res.json())
+                        .subscribe(
+
+                          data => {
+                            if(this.customer.id != data.customerId){
+                              this.toasterService.pop('error', 'Invalid Request',
+                                  "Choose a right tour");
+                                  this.router.navigate(['/dashboard/previous-coupons']);
+                            }
+                            console.log(data); this.model = data },
+                          error => console.log("error"),
+                          () => console.log("complete")
+                        );
+
+           },
   					error => console.log("error"),
   					() => console.log("complete")
   				);
 
-	   	this.http.get('http://54.161.216.233:8090/api/secured/purchased-package/'
-	   		+ this.model.id +'?access_token=' + this.token)
-  				.map(res => res.json())
-  				.subscribe(
-
-  					data => {
-  						if(this.customer.id != data.customerId){
-  							this.toasterService.pop('error', 'Invalid Request',
-				    		 		"Choose a right tour");
-				    		 		this.router.navigate(['/dashboard/previous-coupons']);
-  						}
-  						console.log(data); this.model = data },
-  					error => console.log("error"),
-  					() => console.log("complete")
-  				);
+	   	
 
   		this.http.get('http://54.161.216.233:8090/api/secured/coupon/find-by-purchased/'
   			+ this.model.id +'?access_token=' + this.token)
@@ -70,6 +74,11 @@ export class CouponDetailsComponent {
   direction(id) {
     
     this.router.navigate(['/dashboard/direction/'],{ queryParams: { id:id}})
+  }
+
+  qrcode(code) {
+    
+    this.router.navigate(['/dashboard/qr-code/',code]);
   }
 
   getDigits(num){

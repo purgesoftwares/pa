@@ -53,6 +53,8 @@ import { OpeningDayComponent } from './provider-dashboard/opening-days/index';
 import { AddProductComponent } from './provider-dashboard/products/add-product/index';
 import { DirectionComponent } from './dashboard/direction/index';
 import { ContactUsComponent } from './contact-us/index';
+import { FeedbackComponent } from './dashboard/feedback/index';
+import { QrcodeComponent } from './dashboard/qrcode/index';
 
 export const routes: Routes = [
 	
@@ -189,6 +191,14 @@ export const routes: Routes = [
         {
             path: 'previous-coupons', 
             component: PreviousCouponComponent,
+        },
+        {
+            path: 'feedback/:id', 
+            component: FeedbackComponent,
+        },
+        {
+            path: 'qr-code/:code', 
+            component: QrcodeComponent,
         }
     	]
     },

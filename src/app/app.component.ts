@@ -1,6 +1,6 @@
 import {Component, ViewContainerRef, Optional} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
-import * as $ from 'jquery';
+import * as $ from 'jquery';  
 
 
 @Component({

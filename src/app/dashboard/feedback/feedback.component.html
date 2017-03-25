@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Rate and Feedback
+            </h1>
+        </div>
+    </div>
+
+    <div class="profile-page">
+      <div class="row">
+        <div class="col-lg-12">
+          <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+          
+          <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+            <h3>Quick Rank</h3>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !rank.valid }">
+                    <label for="rank">How was it in {{provider.providerName}}?</label>
+                    <!-- <input type="text" class="form-control" name="rank" [(ngModel)]="model.rank" #rank="ngModel" /> -->
+                    <br/>
+                    <rating [(ngModel)]="model.rank"
+                            #rank="ngModel"
+                            name="rank"
+                            [required]="true"
+                            [float]="true"
+                           >
+                    </rating>
+                    <!--  [max]="5"
+                            iconClass="fa-star"
+                            fullIcon="★"
+                            emptyIcon="☆"
+                            [readonly]="false"
+                            [disabled]="false"
+                            [required]="true"
+                            [float]="true"
+                            [titles]="['one', 'two', 'three', 'four', 'five']" -->
+                </div>
+            
+            <h3>Feedback</h3>
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !feedback.valid }">
+                    <label for="feedback">What you think about {{provider.providerName}}?</label>
+                    <textarea class="form-control" name="feedback" [(ngModel)]="model.feedback" #feedback="ngModel" required placeholder="Write some feedback about {{provider.providerName}}." > </textarea>
+                    <div *ngIf="f.submitted && !feedback.valid" class="help-block">Feedback is required</div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">Save</button>
+                    
+                </div>
+            </form>
+        </div>  
+      </div>
+    </div>
+
+</div>

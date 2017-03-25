@@ -74,6 +74,7 @@ export class CollectCouponComponent {
 		let headers = new Headers();
   		headers.append('content-Type', 'application/json');
 
+  		this.model.couponCode =	this.model.couponCode.toUpperCase();
   		
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon/collect-coupon/?access_token=' 
 			+ this.token, this.model, {headers: headers})
