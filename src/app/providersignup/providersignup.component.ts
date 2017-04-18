@@ -8,6 +8,7 @@ import { SebmGoogleMap } from 'angular2-google-maps/core';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import * as $ from 'jquery';
+import * as globals from './../globals';
 /**
 *	This class represents the lazy loaded SignupComponent.
 */
@@ -25,6 +26,7 @@ export class ProviderSignupComponent {
 	guser: any= {};
 	objThis: any= {};
 	message: any= {};
+	globals: any= {};
 	mess = false;
 	loading = false;
 
@@ -45,6 +47,7 @@ export class ProviderSignupComponent {
 				private mapsAPILoader: MapsAPILoader,
 				private ngZone: NgZone ) {
 		this.toasterService = toasterService;
+		this.globals = globals;
 		
 	}
 

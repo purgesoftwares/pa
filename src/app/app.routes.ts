@@ -55,6 +55,7 @@ import { DirectionComponent } from './dashboard/direction/index';
 import { ContactUsComponent } from './contact-us/index';
 import { FeedbackComponent } from './dashboard/feedback/index';
 import { QrcodeComponent } from './dashboard/qrcode/index';
+import { ActiveCouponComponent } from './dashboard/active-coupons/index';
 
 export const routes: Routes = [
 	
@@ -199,6 +200,10 @@ export const routes: Routes = [
         {
             path: 'qr-code/:code', 
             component: QrcodeComponent,
+        },
+        {
+            path: 'active-coupons', 
+            component: ActiveCouponComponent,
         }
     	]
     },

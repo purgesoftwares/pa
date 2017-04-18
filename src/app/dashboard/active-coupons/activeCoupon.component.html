@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Active Tours
+            </h1>
+        </div>
+    </div>
+
+    <!-- <div class="card card-block" style="width: 450px; margin: auto;">
+        <form (submit)="search(term.value)">
+            <div class="search-group input-group">
+                <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+            </div>
+        </form>
+    </div> -->
+    
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+    
+    <div class="table-responsive">
+             <table class="table table-hover table-striped">
+                 <thead>
+                     <tr>
+                         <th>Coupon Number</th>
+                         <th>Price($)</th>
+                         <th>Radius</th>
+                         <th>Active Time</th>
+                         <th>View</th>
+                         
+                         <!-- <th>Actions</th> -->
+                  </tr>
+                 </thead>
+                 <tbody *ngFor="let coupon of coupons">
+                    <tr (click) = viewDetails(coupon.id) >
+                        
+                        <td>{{ hash(coupon.couponNumber) }}</td>
+                        <td>{{ coupon.couponPackage.price }}</td>
+                        <td>{{ coupon.couponPackage.radius }}</td>
+                        <td>{{ coupon.couponPackage.endTime | date }}</td>
+                        <th *ngIf="isJoinedFriends" >{{coupon.count}}</th>
+                        <td><button (click) = viewDetails(coupon.id) class="btn btn-default"> View </button></td>
+                        <!-- <td><button (click) = "view(coupon.id, coupon.couponCode, coupon.couponNumber, coupon.price, coupon.providerId, coupon.used, coupon.availability, coupon.startTime, coupon.endTime)" class="btn btn-primary">View</button></td> -->
+                       <!--  <td><button (click) = termsConditions(coupon.id) class="btn btn-primary">Buy</button></td>
+                        <td>
+                          <button (click) = "joinFriend(coupon.id, coupon.couponNumber)" class="btn btn-primary">Join Friend</button>
+                        </td> -->
+                    </tr>
+                </tbody> 
+             </table>
+         </div>
+
+         <div style="text-align: center;">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === 1}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}" style = "display: inline;">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage - 1)">&laquo;</a>
+          </li>
+          <li style = "display: inline;" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage + 1)">&raquo;</a>
+          </li>
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+      </ul>
+    </div>
+     </div>
