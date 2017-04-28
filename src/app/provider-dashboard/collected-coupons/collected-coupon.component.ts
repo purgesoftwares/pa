@@ -51,10 +51,10 @@ export class CollectedCouponComponent {
 			  				.subscribe(
 			  					data => { 
 
-		  							if(data.content.length) {
+		  							if(data) {
 		                  				
 		  								this.model = data;
-		  								this.products = data.content;
+		  								this.products = data;
 		                  			} else {
 		                      			this.mess 	=	true;
 		                      			this.message= "There is no records found.";
@@ -100,6 +100,15 @@ export class CollectedCouponComponent {
 	view(id) {
 		
 		this.router.navigate(['/dashboard/coupon-package-view/'],{ queryParams: { id:id}})
+	}
+
+	total(products) {
+		var sum = 0;
+		if(this.products)
+			for (var i = 0; i < this.products.length; i++) {
+				sum += products[i].amount;
+	        }
+        return sum;
 	}
 
 	search(terms: string) {
